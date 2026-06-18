@@ -12,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         :root {
@@ -42,8 +43,8 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(0, 255, 102, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 102, 0.02) 1px, transparent 1px);
+                linear-gradient(rgba(0, 255, 102, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 102, 0.015) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -1;
             pointer-events: none;
@@ -139,6 +140,40 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 15px rgba(0, 255, 102, 0.3));
+        }
+
+        /* СЕКЦИЯ СТАТИСТИКИ (Новое добавление!) */
+        .stats-section {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px 10%;
+            background: rgba(17, 24, 39, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-glow);
+            font-family: monospace;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 5px;
         }
 
         /* Секция Команды */
@@ -423,6 +458,41 @@
             background: rgba(0, 255, 102, 0.02);
         }
 
+        /* Кнопка "Наверх" (Новое добавление!) */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--accent-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            background: var(--accent-color);
+            color: #030712;
+            box-shadow: 0 0 15px var(--accent-color);
+            transform: translateY(-3px);
+        }
+
         /* Футер */
         footer {
             text-align: center;
@@ -450,6 +520,9 @@
             }
             .hero h1 {
                 font-size: 3.5rem;
+            }
+            .stats-section {
+                gap: 30px;
             }
         }
 
@@ -485,6 +558,25 @@
         <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 10px;">
             Разработка софта, утилит и игровых дополнений. Официальный сайт команды.
         </p>
+    </section>
+
+    <section class="stats-section">
+        <div class="stat-item">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Активных кодера</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10k+</div>
+            <div class="stat-label">Скачиваний софта</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Стабильность кода</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">2026</div>
+            <div class="stat-label">В деле круглый год</div>
+        </div>
     </section>
 
     <section class="team-section" id="team">
@@ -563,9 +655,23 @@
         </div>
     </section>
 
+    <a href="#" class="scroll-top-btn" id="scrollTopBtn" title="Наверх">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
     <footer>
         <p>&copy; 2026 GreenPer Team. Все права защищены.</p>
     </footer>
 
+    <script>
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        };
+    </script>
 </body>
 </html>
