@@ -50,6 +50,21 @@
             pointer-events: none;
         }
 
+        /* Кастомный курсор */
+        #custom-cursor {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, width 0.3s, height 0.3s;
+            display: none;
+        }
+
         /* Шапка сайта */
         header {
             display: flex;
@@ -112,15 +127,14 @@
 
         /* Главный экран */
         .hero {
-            height: 75vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 120px 20px 60px;
             background: radial-gradient(circle at center, rgba(0, 255, 102, 0.08) 0%, transparent 65%);
-            margin-top: 60px;
         }
 
         .hero h1 {
@@ -142,7 +156,80 @@
             filter: drop-shadow(0 0 15px rgba(0, 255, 102, 0.3));
         }
 
-        /* СЕКЦИЯ СТАТИСТИКИ (Новое добавление!) */
+        /* КИБЕР-ТЕРМИНАЛ (Новое!) */
+        .terminal-container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(5, 10, 20, 0.85);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(0, 255, 102, 0.05);
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .terminal-header {
+            background: rgba(17, 24, 39, 0.8);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .terminal-dot {
+            width: 100%;
+            max-width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .td-1 { background: #ef4444; }
+        .td-2 { background: #eab308; }
+        .td-3 { background: #22c55e; }
+
+        .terminal-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace;
+            margin-left: 10px;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #22c55e;
+            min-height: 150px;
+        }
+
+        .terminal-input-line {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .term-btn {
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .term-btn:hover {
+            background: var(--accent-color);
+            color: #030712;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* СЕКЦИЯ СТАТИСТИКИ */
         .stats-section {
             display: flex;
             justify-content: center;
@@ -458,7 +545,62 @@
             background: rgba(0, 255, 102, 0.02);
         }
 
-        /* Кнопка "Наверх" (Новое добавление!) */
+        /* ТАЙМЛАЙН / ROADMAP (Новое!) */
+        .roadmap-section {
+            padding: 80px 10%;
+            background: rgba(17, 24, 39, 0.2);
+        }
+
+        .roadmap-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #1f2937;
+            border: 2px solid rgba(0, 255, 102, 0.5);
+        }
+
+        .roadmap-item.active::before {
+            background: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .roadmap-date {
+            font-family: monospace;
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .roadmap-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .roadmap-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Кнопка "Наверх" */
         .scroll-top-btn {
             position: fixed;
             bottom: 30px;
@@ -545,11 +687,14 @@
 </head>
 <body>
 
+    <div id="custom-cursor"></div>
+
     <header>
         <div class="logo">GreenPer Team</div>
         <nav>
             <a href="#team">Команда</a>
             <a href="#projects">Разработки</a>
+            <a href="#roadmap">Планы</a>
         </nav>
     </header>
 
@@ -558,8 +703,31 @@
         <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 10px;">
             Разработка софта, утилит и игровых дополнений. Официальный сайт команды.
         </p>
+
+        <!-- КИБЕР-ТЕРМИНАЛ -->
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <div class="terminal-dot td-1"></div>
+                <div class="terminal-dot td-2"></div>
+                <div class="terminal-dot td-3"></div>
+                <div class="terminal-title">greenper_core.sh</div>
+            </div>
+            <div class="terminal-body" id="termBody">
+                <div>> Инициализация ядра GreenPer... Готово.</div>
+                <div>> Введите команду или нажмите кнопку ниже.</div>
+            </div>
+            <div style="padding: 0 20px 20px;">
+                <div class="terminal-input-line">
+                    <button class="term-btn" onclick="runCommand('help')">./help</button>
+                    <button class="term-btn" onclick="runCommand('status')">./status</button>
+                    <button class="term-btn" onclick="runCommand('secret')">./secret</button>
+                    <button class="term-btn" onclick="runCommand('clear')">clear</button>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- СЕКЦИЯ СТАТИСТИКИ КОМАНДЫ -->
     <section class="stats-section">
         <div class="stat-item">
             <div class="stat-number">2+</div>
@@ -579,10 +747,12 @@
         </div>
     </section>
 
+    <!-- СЕКЦИЯ КОМАНДЫ -->
     <section class="team-section" id="team">
         <h2 class="section-title">Состав <span>Команды</span></h2>
         <div class="grid">
             
+            <!-- КАРТОЧКА: Per4ik -->
             <div class="card">
                 <div class="avatar-container">
                     <img src="per4ik.png" alt="Аватарка Per4ik" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -598,6 +768,7 @@
                 </div>
             </div>
 
+            <!-- КАРТОЧКА: Quach -->
             <div class="card">
                 <div class="avatar-container">
                     <img src="quach.png" alt="Аватарка Quach" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -616,9 +787,11 @@
         </div>
     </section>
 
+    <!-- СЕКЦИЯ ПРОЕКТОВ -->
     <section class="projects-section" id="projects">
         <h2 class="section-title">Наши <span>Проекты</span></h2>
 
+        <!-- ПРОЕКТ 1: Стим Аддон -->
         <div class="project-wide">
             <div class="project-info">
                 <div class="badge-status">Lost Media Которую мы нашли</div>
@@ -634,6 +807,7 @@
             </div>
         </div>
 
+        <!-- ПРОЕКТ 2: Per4ik shop -->
         <div class="project-wide">
             <div class="project-info">
                 <div class="badge-status">Маркетплейс</div>
@@ -649,12 +823,42 @@
             </div>
         </div>
 
+        <!-- Слот-заглушка для будущих проектов -->
         <div class="project-slot-grid">
             <div class="slot-blank">[ Проект добавлю сам ]</div>
             <div class="slot-blank">[ Проект добавлю сам ]</div>
         </div>
     </section>
 
+    <!-- НОВАЯ СЕКЦИЯ: ROADMAP (ПЛАНЫ) -->
+    <section class="roadmap-section" id="roadmap">
+        <h2 class="section-title">Линия <span>Развития</span></h2>
+        <div class="roadmap-container">
+            <div class="roadmap-item active">
+                <div class="roadmap-date">ЕТА: В ПРОЦЕССЕ</div>
+                <div class="roadmap-content">
+                    <h4>Релиз лаунчера приложений</h4>
+                    <p>Проектирование и оптимизация централизованной оболочки для быстрого запуска внутренних утилит команды.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-date">ETA: Q3 2026</div>
+                <div class="roadmap-content">
+                    <h4>Обновление прокси-серверов</h4>
+                    <p>Добавление новых конфигураций под актуальные обходы блокировок и ускорение пинга в соревновательных играх.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-date">ETA: Q4 2026</div>
+                <div class="roadmap-content">
+                    <h4>Секретный проект на Lua/C#</h4>
+                    <p>Разработка кроссплатформенной синхронизации игровых состояний для многопользовательских модулей.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КНОПКА НАВЕРХ -->
     <a href="#" class="scroll-top-btn" id="scrollTopBtn" title="Наверх">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
@@ -664,6 +868,26 @@
     </footer>
 
     <script>
+        // Код терминала
+        const termBody = document.getElementById('termBody');
+        function runCommand(cmd) {
+            if (cmd === 'clear') {
+                termBody.innerHTML = '';
+                return;
+            }
+            let response = '';
+            if (cmd === 'help') {
+                response = 'Доступные директории: <br> [!] ./status - проверка систем команды <br> [!] ./secret - зашифрованный лог';
+            } else if (cmd === 'status') {
+                response = '<span style="color:#00ff66;">[OK]</span> Ядро: Стабильно<br><span style="color:#00ff66;">[OK]</span> Код: Оптимизирован<br><span style="color:#00ff66;">[OK]</span> Идеи: Генерируются 24/7';
+            } else if (cmd === 'secret') {
+                response = '<span style="color:#eab308;">[WARN]</span> Внимание: Обнаружен след старого кода... Аддон Puppeteer успешно извлечен из архивов. Код сборки: gp_992x_2026.';
+            }
+            termBody.innerHTML += `<div style="color:var(--text-muted); margin-top:8px;">$ run ${cmd}</div><div>${response}</div>`;
+            termBody.scrollTop = termBody.scrollHeight;
+        }
+
+        // Кнопка наверх
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.onscroll = function() {
             if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
@@ -672,6 +896,21 @@
                 scrollTopBtn.classList.remove('visible');
             }
         };
+
+        // Кастомный курсор (работает только на ПК, где есть мышь)
+        const cursor = document.getElementById('custom-cursor');
+        if (window.matchMedia("(pointer: fine)").matches) {
+            cursor.style.display = 'block';
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            // Эффект увеличения при наведении на интерактивные элементы
+            document.querySelectorAll('a, button, .card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
+                el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+            });
+        }
     </script>
 </body>
 </html>
