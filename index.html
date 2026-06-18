@@ -34,7 +34,7 @@
             position: relative;
         }
 
-        /* Задний фон-сетка для киберпанк атмосферы */
+        /* Задний фон-сетка */
         body::before {
             content: '';
             position: fixed;
@@ -130,7 +130,6 @@
             width: 100%;
         }
 
-        /* Стильная кнопка TG в шапке */
         .nav-tg-btn {
             display: inline-flex;
             align-items: center;
@@ -578,6 +577,133 @@
             margin-bottom: 5px;
         }
 
+        /* СЕКЦИЯ ПРЕДЛОЖЕНИЙ И ИДЕЙ */
+        .ideas-section {
+            padding: 100px 10%;
+            background: radial-gradient(circle at bottom, rgba(0, 255, 102, 0.05) 0%, transparent 60%);
+        }
+
+        .ideas-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-group input, .form-group textarea {
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 12px rgba(0, 255, 102, 0.2);
+        }
+
+        .ideas-container button {
+            width: 100%;
+            background: var(--accent-color);
+            color: #030712;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ideas-container button:hover {
+            box-shadow: 0 0 20px var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        /* АДМИН-ПАНЕЛЬ СМОТРЕТЬ ИДЕИ (СКРЫТА ПО ДЕФОЛТУ) */
+        .admin-panel {
+            max-width: 800px;
+            margin: 40px auto 0;
+            background: rgba(5, 10, 20, 0.95);
+            border: 1px solid #ef4444;
+            border-radius: 16px;
+            padding: 30px;
+            display: none; /* Скрыто */
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+        }
+
+        .admin-panel h3 {
+            color: #ef4444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .idea-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative;
+        }
+
+        .idea-box strong {
+            color: var(--accent-color);
+        }
+
+        .idea-box .date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-left: 10px;
+        }
+
+        .idea-box p {
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        .delete-idea-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
         /* Кнопка "Наверх" */
         .scroll-top-btn {
             position: fixed;
@@ -633,8 +759,7 @@
         <nav>
             <a href="#team">Команда</a>
             <a href="#projects">Разработки</a>
-            <a href="#roadmap">Планы</a>
-            <!-- Сюда вставляй ссылку на ваш ТГ канал -->
+            <a href="#ideas">Идеи</a>
             <a href="https://t.me/GreenPerTeam" class="nav-tg-btn" target="_blank">
                 <i class="fa-brands fa-telegram"></i> Канал
             </a>
@@ -669,6 +794,7 @@
         </div>
     </section>
 
+    <!-- СЕКЦИЯ СТАТИСТИКИ -->
     <section class="stats-section">
         <div class="stat-item">
             <div class="stat-number">3+</div>
@@ -688,6 +814,7 @@
         </div>
     </section>
 
+    <!-- СОСТАВ КОМАНДЫ -->
     <section class="team-section" id="team">
         <h2 class="section-title">Состав <span>Команды</span></h2>
         <div class="grid">
@@ -721,7 +848,7 @@
 
             <div class="card">
                 <div class="avatar-container">
-                    <img src="new_member.png" alt="Новый участник" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="new_member.png" alt="Skelet" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span style="display:none; color: var(--text-muted);">[ Аватар ]</span>
                 </div>
                 <h3>Skelet</h3>
@@ -729,12 +856,13 @@
                 <p>Генерирует уникальные концепты, продумывает фичи, логику работы софта и развивает креативные направления проектов.</p>
                 <div class="btn-group">
                     <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://github.com/ " class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ПРОЕКТЫ -->
     <section class="projects-section" id="projects">
         <h2 class="section-title">Наши <span>Проекты</span></h2>
 
@@ -763,6 +891,7 @@
         </div>
     </section>
 
+    <!-- ТАЙМЛАЙН -->
     <section class="roadmap-section" id="roadmap">
         <h2 class="section-title">Линия <span>Развития</span></h2>
         <div class="roadmap-container">
@@ -779,10 +908,40 @@
         </div>
     </section>
 
+    <!-- СЕКЦИЯ ПРЕДЛОЖЕНИЙ (ИДЕЙ) -->
+    <section class="ideas-section" id="ideas">
+        <h2 class="section-title">Предложить <span>Идею</span></h2>
+        
+        <div class="ideas-container">
+            <form id="ideaForm" onsubmit="submitIdea(event)">
+                <div class="form-group">
+                    <label for="username">Твой Никнейм / ТГ</label>
+                    <input type="text" id="username" placeholder="Например, @anon или Kirill" required>
+                </div>
+                <div class="form-group">
+                    <label for="ideatext">Суть идеи / какого софта не хватает?</label>
+                    <textarea id="ideatext" rows="5" placeholder="Опиши свою задумку максимально подробно..." required></textarea>
+                </div>
+                <button type="submit">Отправить идею команде</button>
+            </form>
+        </div>
+
+        <!-- КНОПКА ДЛЯ ТЕБЯ ЧТОБЫ СМОТРЕТЬ (Можно нажать скрытно или ввести команду в консоли / терминале) -->
+        <p style="margin-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.1); cursor: pointer;" onclick="openAdminPanel()">[ Управление панелью ]</p>
+
+        <!-- АДМИН ПАНЕЛЬ ДЛЯ ПРОСМОТРА ИДЕЙ -->
+        <div class="admin-panel" id="adminPanel">
+            <h3>Панель управления идеями <button onclick="closeAdminPanel()" style="background:none; border:none; color:#9ca3af; cursor:pointer;">✕</button></h3>
+            <div id="ideasLogsList">
+                <!-- Сюда скрипт выведет список всех присланных идей -->
+            </div>
+        </div>
+    </section>
+
     <a href="#" class="scroll-top-btn" id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i></a>
 
     <footer>
-        <p>&copy; 2026 GreenPer Team. Интегрированные UI-технологии. Присоединяйтесь к нашему <a href="https://t.me/YOUR_CHANNEL_LINK" target="_blank">Telegram-каналу</a>.</p>
+        <p>&copy; 2026 GreenPer Team. Интегрированные UI-технологии. Присоединяйтесь к нашему <a href="https://t.me/GreenPerTeam" target="_blank">Telegram-каналу</a>.</p>
     </footer>
 
     <script>
@@ -795,63 +954,48 @@
             }
         }
 
-        // Мягкий и чистый клик интерфейса
         function playClickSound() {
             initAudio();
             if (!audioCtx) return;
-
             let osc = audioCtx.createOscillator();
             let gain = audioCtx.createGain();
-            
             osc.type = 'sine';
             osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
-            
             gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.04);
-            
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
             osc.stop(audioCtx.currentTime + 0.04);
         }
 
-        // Едва заметный шелест при наведении (Ховер)
         function playHoverSound() {
             initAudio();
             if (!audioCtx) return;
-
             let osc = audioCtx.createOscillator();
             let gain = audioCtx.createGain();
-            
             osc.type = 'triangle';
             osc.frequency.setValueAtTime(800, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.03);
-            
             gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.03);
-            
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
             osc.stop(audioCtx.currentTime + 0.03);
         }
 
-        // Звук быстрой печати данных в терминале
         function playTypeSound() {
             initAudio();
             if (!audioCtx) return;
-
             for (let i = 0; i < 3; i++) {
                 let timeOffset = i * 0.03;
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
-                
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(1500 - (i * 200), audioCtx.currentTime + timeOffset);
-                
                 gain.gain.setValueAtTime(0.01, audioCtx.currentTime + timeOffset);
                 gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + timeOffset + 0.02);
-                
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start(audioCtx.currentTime + timeOffset);
@@ -859,16 +1003,14 @@
             }
         }
 
-        // Динамическое обновление слушателей интерфейса
         function setupUIListeners() {
             const clickElements = document.querySelectorAll('a, button, .term-btn, .nav-tg-btn');
-            const hoverElements = document.querySelectorAll('a, button, .term-btn, .card, .project-wide, .nav-tg-btn');
+            const hoverElements = document.querySelectorAll('a, button, .term-btn, .card, .project-wide, .nav-tg-btn, .ideas-container button');
 
             clickElements.forEach(el => {
                 el.removeEventListener('click', playClickSound);
                 el.addEventListener('click', playClickSound);
             });
-
             hoverElements.forEach(el => {
                 el.removeEventListener('mouseenter', playHoverSound);
                 el.addEventListener('mouseenter', playHoverSound);
@@ -887,7 +1029,7 @@
                     cursor.style.top = e.clientY + 'px';
                 });
                 
-                document.querySelectorAll('a, button, .card, .term-btn, .nav-tg-btn').forEach(el => {
+                document.querySelectorAll('a, button, .card, .term-btn, .nav-tg-btn, .ideas-container button').forEach(el => {
                     el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
                     el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
                 });
@@ -901,9 +1043,7 @@
                 termBody.innerHTML = '';
                 return;
             }
-            
             playTypeSound();
-
             let response = '';
             if (cmd === 'help') {
                 response = 'Доступные директории: <br> [!] ./status - проверка систем <br> [!] ./secret - зашифрованный лог';
@@ -912,7 +1052,6 @@
             } else if (cmd === 'secret') {
                 response = '<span style="color:#eab308;">[WARN]</span> Внимание: Код старого аддона Puppeteer успешно интегрирован в защищенный сектор.';
             }
-            
             termBody.innerHTML += `<div style="color:var(--text-muted); margin-top:8px;">$ run ${cmd}</div><div>${response}</div>`;
             termBody.scrollTop = termBody.scrollHeight;
         }
@@ -926,6 +1065,76 @@
                 scrollTopBtn.classList.remove('visible');
             }
         };
+
+        // --- ОБРАБОТКА СИСТЕМЫ ИДЕЙ ---
+        function submitIdea(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const ideatext = document.getElementById('ideatext').value;
+            const date = new Date().toLocaleString('ru-RU');
+
+            const newIdea = { username, ideatext, date };
+
+            // Получаем старые идеи из памяти бразуера
+            let ideas = JSON.parse(localStorage.getItem('greenper_ideas')) || [];
+            ideas.push(newIdea);
+
+            // Сохраняем обратно
+            localStorage.setItem('greenper_ideas', JSON.stringify(ideas));
+
+            alert('Идея успешно отправлена! Спасибо за вклад в развитие GreenPer.');
+            document.getElementById('ideaForm').reset();
+            
+            if(document.getElementById('adminPanel').style.display === 'block') {
+                renderIdeas();
+            }
+        }
+
+        // Рендеринг (вывод) сохраненных идей
+        function renderIdeas() {
+            const listContainer = document.getElementById('ideasLogsList');
+            let ideas = JSON.parse(localStorage.getItem('greenper_ideas')) || [];
+
+            if(ideas.length === 0) {
+                listContainer.innerHTML = '<p style="color:var(--text-muted);">Идей пока нет. Будь первым!</p>';
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            ideas.forEach((idea, index) => {
+                listContainer.innerHTML += `
+                    <div class="idea-box">
+                        <button class="delete-idea-btn" onclick="deleteIdea(${index})">✕</button>
+                        <div><strong>Отправитель:</strong> ${idea.username} <span class="date">${idea.date}</span></div>
+                        <p>${idea.ideatext}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteIdea(index) {
+            let ideas = JSON.parse(localStorage.getItem('greenper_ideas')) || [];
+            ideas.splice(index, 1);
+            localStorage.setItem('greenper_ideas', JSON.stringify(ideas));
+            renderIdeas();
+        }
+
+        // Функции скрытой админки
+        function openAdminPanel() {
+            // Защита простейшим паролем (можешь поменять 'greenper2026' на любой другой)
+            const password = prompt('Введите ключ администратора GreenPer для просмотра идей:');
+            if (password === 'greenper2026') {
+                document.getElementById('adminPanel').style.display = 'block';
+                renderIdeas();
+                document.getElementById('adminPanel').scrollIntoView();
+            } else if (password !== null) {
+                alert('Доступ заблокирован: Неверный ключ дешифрования.');
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+        }
     </script>
 </body>
 </html>
