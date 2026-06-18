@@ -283,10 +283,11 @@
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
+        /* Изменена сетка гридов для адаптивного размещения 3 карточек */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -499,26 +500,6 @@
             transform: translateY(-2px);
         }
 
-        /* Слот-заглушка */
-        .project-slot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1050px;
-            margin: 50px auto 0;
-        }
-
-        .slot-blank {
-            border: 2px dashed rgba(255, 255, 255, 0.08);
-            padding: 40px;
-            text-align: center;
-            border-radius: 16px;
-            color: rgba(255, 255, 255, 0.2);
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.01);
-            transition: all 0.3s ease;
-        }
-
         /* ТАЙМЛАЙН / ROADMAP */
         .roadmap-section {
             padding: 80px 10%;
@@ -640,8 +621,8 @@
 
     <section class="stats-section">
         <div class="stat-item">
-            <div class="stat-number">2+</div>
-            <div class="stat-label">Активных кодера</div>
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Участника команды</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">10k+</div>
@@ -685,6 +666,20 @@
                 <div class="btn-group">
                     <a href="https://t.me/Quac23h" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/kirillzarkov10-svg" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="avatar-container">
+                    <img src="new_member.png" alt="Новый участник" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display:none; color: var(--text-muted);">[ Аватар ]</span>
+                </div>
+                <h3>Skelet</h3>
+                <div class="role">Идеи / Концепты</div>
+                <p>Генерирует уникальные концепты, продумывает фичи, логику работы софта и развивает креативные направления проектов.</p>
+                <div class="btn-group">
+                    <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://github.com/ " class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -759,9 +754,9 @@
             let gain = audioCtx.createGain();
             
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(1200, audioCtx.currentTime); // Высокая чистая частота
+            osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
             
-            gain.gain.setValueAtTime(0.04, audioCtx.currentTime); // Совсем тихий звук
+            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.04);
             
             osc.connect(gain);
@@ -780,10 +775,9 @@
             
             osc.type = 'triangle';
             osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-            // Плавное микро-повышение частоты для "цифрового" отклика
             osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.03);
             
-            gain.gain.setValueAtTime(0.015, audioCtx.currentTime); // Супер тихий фоновый шелест
+            gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.03);
             
             osc.connect(gain);
@@ -797,7 +791,6 @@
             initAudio();
             if (!audioCtx) return;
 
-            // Генерируем 3 быстрых микро-щелчка подряд, имитируя вывод текста
             for (let i = 0; i < 3; i++) {
                 let timeOffset = i * 0.03;
                 let osc = audioCtx.createOscillator();
@@ -816,22 +809,40 @@
             }
         }
 
-        // Навешиваем обработчики звуков на элементы интерфейса
+        // Динамическое обновление слушателей интерфейса (чтобы новая карточка тоже шуршала)
         function setupUIListeners() {
             const clickElements = document.querySelectorAll('a, button, .term-btn');
             const hoverElements = document.querySelectorAll('a, button, .term-btn, .card, .project-wide');
 
             clickElements.forEach(el => {
+                el.removeEventListener('click', playClickSound);
                 el.addEventListener('click', playClickSound);
             });
 
             hoverElements.forEach(el => {
+                el.removeEventListener('mouseenter', playHoverSound);
                 el.addEventListener('mouseenter', playHoverSound);
             });
         }
 
-        // Инициализация при загрузке страницы
-        window.addEventListener('DOMContentLoaded', setupUIListeners);
+        window.addEventListener('DOMContentLoaded', () => {
+            setupUIListeners();
+            
+            // Настройка кастомного курсора
+            const cursor = document.getElementById('custom-cursor');
+            if (window.matchMedia("(pointer: fine)").matches) {
+                cursor.style.display = 'block';
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+                
+                document.querySelectorAll('a, button, .card, .term-btn').forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
+                    el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+                });
+            }
+        });
 
         // --- ЛОГИКА ТЕРМИНАЛА ---
         const termBody = document.getElementById('termBody');
@@ -841,14 +852,13 @@
                 return;
             }
             
-            // Воспроизводим эффект печати логов
             playTypeSound();
 
             let response = '';
             if (cmd === 'help') {
                 response = 'Доступные директории: <br> [!] ./status - проверка систем <br> [!] ./secret - зашифрованный лог';
             } else if (cmd === 'status') {
-                response = '<span style="color:#00ff66;">[OK]</span> Ядро: Стабильно<br><span style="color:#00ff66;">[OK]</span> Интерфейс: Оптимизирован (Звук: Приятный)';
+                response = '<span style="color:#00ff66;">[OK]</span> Ядро: Стабильно<br><span style="color:#00ff66;">[OK]</span> Интерфейс: 3 активных узла команды подключены.';
             } else if (cmd === 'secret') {
                 response = '<span style="color:#eab308;">[WARN]</span> Внимание: Код старого аддона Puppeteer успешно интегрирован в защищенный сектор.';
             }
@@ -866,21 +876,6 @@
                 scrollTopBtn.classList.remove('visible');
             }
         };
-
-        // Кастомный курсор
-        const cursor = document.getElementById('custom-cursor');
-        if (window.matchMedia("(pointer: fine)").matches) {
-            cursor.style.display = 'block';
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            // Эффект увеличения при наведении на интерактивные элементы
-            document.querySelectorAll('a, button, .card, .term-btn').forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
-                el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
-            });
-        }
     </script>
 </body>
 </html>
