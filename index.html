@@ -492,10 +492,23 @@
             align-self: flex-start;
         }
 
-        .project-wide:nth-child(3) .badge-status {
+        /* Цвета для разных типов бейджей */
+        .project-wide.type-lostmedia .badge-status {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .project-wide.type-shop .badge-status {
             background: rgba(0, 255, 102, 0.1);
             color: var(--accent-color);
             border: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .project-wide.type-gmod .badge-status {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
         }
 
         .project-wide .btn-action {
@@ -646,7 +659,7 @@
             transform: translateY(-1px);
         }
 
-        /* АДМИН-ПАНЕЛЬ СМОТРЕТЬ ИДЕИ (СКРЫТА ПО ДЕФОЛТУ) */
+        /* АДМИН-ПАНЕЛЬ СМОТРЕТЬ ИДЕИ */
         .admin-panel {
             max-width: 800px;
             margin: 40px auto 0;
@@ -654,7 +667,7 @@
             border: 1px solid #ef4444;
             border-radius: 16px;
             padding: 30px;
-            display: none; /* Скрыто */
+            display: none;
             box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
         }
 
@@ -794,7 +807,6 @@
         </div>
     </section>
 
-    <!-- СЕКЦИЯ СТАТИСТИКИ -->
     <section class="stats-section">
         <div class="stat-item">
             <div class="stat-number">3+</div>
@@ -814,7 +826,6 @@
         </div>
     </section>
 
-    <!-- СОСТАВ КОМАНДЫ -->
     <section class="team-section" id="team">
         <h2 class="section-title">Состав <span>Команды</span></h2>
         <div class="grid">
@@ -824,8 +835,8 @@
                     <span style="display:none; color: var(--text-muted);">[ Ава Per4ik ]</span>
                 </div>
                 <h3>Per4ik</h3>
-                <div class="role">Кодер / 2</div>
-                <p>Кодер 2</p>
+                <div class="role">Идеи / Описание</div>
+                <p>Отвечает за генерацию идей, концепты, составление подробных описаний и логику работы наших будущих и текущих проектов.</p>
                 <div class="btn-group">
                     <a href="https://t.me/vobmy" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/per4ik148" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
@@ -862,11 +873,22 @@
         </div>
     </section>
 
-    <!-- ПРОЕКТЫ -->
     <section class="projects-section" id="projects">
         <h2 class="section-title">Наши <span>Проекты</span></h2>
 
-        <div class="project-wide">
+        <div class="project-wide type-gmod">
+            <div class="project-info">
+                <div class="badge-status">Verity: Core Malfunction</div>
+                <h3>Verity: Core Malfunction</h3>
+                <p>Verity: Core Malfunction</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747106958" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
+            </div>
+            <div class="project-image">
+                <img src="gmod_addon.jpg" alt="GMod Addon" onerror="this.style.display='none';">
+            </div>
+        </div>
+
+        <div class="project-wide type-lostmedia">
             <div class="project-info">
                 <div class="badge-status">Lost Media Стим аддон</div>
                 <h3>Steam Addon Puppeteer_Legacy</h3>
@@ -878,7 +900,7 @@
             </div>
         </div>
 
-        <div class="project-wide">
+        <div class="project-wide type-shop">
             <div class="project-info">
                 <div class="badge-status">Маркетплейс</div>
                 <h3>Per4ik shop</h3>
@@ -891,7 +913,6 @@
         </div>
     </section>
 
-    <!-- ТАЙМЛАЙН -->
     <section class="roadmap-section" id="roadmap">
         <h2 class="section-title">Линия <span>Развития</span></h2>
         <div class="roadmap-container">
@@ -908,7 +929,6 @@
         </div>
     </section>
 
-    <!-- СЕКЦИЯ ПРЕДЛОЖЕНИЙ (ИДЕЙ) -->
     <section class="ideas-section" id="ideas">
         <h2 class="section-title">Предложить <span>Идею</span></h2>
         
@@ -926,15 +946,11 @@
             </form>
         </div>
 
-        <!-- КНОПКА ДЛЯ ТЕБЯ ЧТОБЫ СМОТРЕТЬ (Можно нажать скрытно или ввести команду в консоли / терминале) -->
         <p style="margin-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.1); cursor: pointer;" onclick="openAdminPanel()">[ Управление панелью ]</p>
 
-        <!-- АДМИН ПАНЕЛЬ ДЛЯ ПРОСМОТРА ИДЕЙ -->
         <div class="admin-panel" id="adminPanel">
             <h3>Панель управления идеями <button onclick="closeAdminPanel()" style="background:none; border:none; color:#9ca3af; cursor:pointer;">✕</button></h3>
-            <div id="ideasLogsList">
-                <!-- Сюда скрипт выведет список всех присланных идей -->
-            </div>
+            <div id="ideasLogsList"></div>
         </div>
     </section>
 
@@ -1075,11 +1091,9 @@
 
             const newIdea = { username, ideatext, date };
 
-            // Получаем старые идеи из памяти бразуера
             let ideas = JSON.parse(localStorage.getItem('greenper_ideas')) || [];
             ideas.push(newIdea);
 
-            // Сохраняем обратно
             localStorage.setItem('greenper_ideas', JSON.stringify(ideas));
 
             alert('Идея успешно отправлена! Спасибо за вклад в развитие GreenPer.');
@@ -1090,7 +1104,6 @@
             }
         }
 
-        // Рендеринг (вывод) сохраненных идей
         function renderIdeas() {
             const listContainer = document.getElementById('ideasLogsList');
             let ideas = JSON.parse(localStorage.getItem('greenper_ideas')) || [];
@@ -1119,9 +1132,7 @@
             renderIdeas();
         }
 
-        // Функции скрытой админки
         function openAdminPanel() {
-            // Защита простейшим паролем (можешь поменять 'greenper2026' на любой другой)
             const password = prompt('Введите ключ администратора GreenPer для просмотра идей:');
             if (password === 'greenper2026') {
                 document.getElementById('adminPanel').style.display = 'block';
