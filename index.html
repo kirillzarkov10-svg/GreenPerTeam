@@ -91,6 +91,11 @@
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav a {
             color: var(--text-main);
             text-decoration: none;
@@ -123,6 +128,33 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        /* Стильная кнопка TG в шапке */
+        .nav-tg-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 30px;
+            padding: 8px 16px;
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.05);
+        }
+
+        .nav-tg-btn:hover {
+            background: var(--accent-color);
+            color: #030712;
+            box-shadow: 0 0 15px var(--accent-color);
+            transform: translateY(-1px);
         }
 
         /* Главный экран */
@@ -283,7 +315,6 @@
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        /* Изменена сетка гридов для адаптивного размещения 3 карточек */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -468,6 +499,10 @@
             border: 1px solid rgba(0, 255, 102, 0.2);
         }
 
+        .project-wide .btn-action {
+            align-self: flex-start;
+        }
+
         .project-info h3 {
             font-size: 2.1rem;
             font-weight: 800;
@@ -576,6 +611,17 @@
             color: var(--text-muted);
             background: #020617;
         }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -588,6 +634,10 @@
             <a href="#team">Команда</a>
             <a href="#projects">Разработки</a>
             <a href="#roadmap">Планы</a>
+            <!-- Сюда вставляй ссылку на ваш ТГ канал -->
+            <a href="https://t.me/GreenPerTeam" class="nav-tg-btn" target="_blank">
+                <i class="fa-brands fa-telegram"></i> Канал
+            </a>
         </nav>
     </header>
 
@@ -704,7 +754,7 @@
             <div class="project-info">
                 <div class="badge-status">Маркетплейс</div>
                 <h3>Per4ik shop</h3>
-                <p>Наш официальный магазин цифровых товаров. Низкие цены на криптовалюты, смена регионов (Steam, Epic, PS, iCloud) и качественные ДНС прокси-сервера.</p>
+                <p>Наш official магазин цифровых товаров. Низкие цены на криптовалюты, смена регионов (Steam, Epic, PS, iCloud) и качественные ДНС прокси-сервера.</p>
                 <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank"><i class="fa-solid fa-cart-shopping"></i> Перейти в шоп</a>
             </div>
             <div class="project-image">
@@ -732,7 +782,7 @@
     <a href="#" class="scroll-top-btn" id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i></a>
 
     <footer>
-        <p>&copy; 2026 GreenPer Team. Интегрированные UI-технологии.</p>
+        <p>&copy; 2026 GreenPer Team. Интегрированные UI-технологии. Присоединяйтесь к нашему <a href="https://t.me/YOUR_CHANNEL_LINK" target="_blank">Telegram-каналу</a>.</p>
     </footer>
 
     <script>
@@ -809,10 +859,10 @@
             }
         }
 
-        // Динамическое обновление слушателей интерфейса (чтобы новая карточка тоже шуршала)
+        // Динамическое обновление слушателей интерфейса
         function setupUIListeners() {
-            const clickElements = document.querySelectorAll('a, button, .term-btn');
-            const hoverElements = document.querySelectorAll('a, button, .term-btn, .card, .project-wide');
+            const clickElements = document.querySelectorAll('a, button, .term-btn, .nav-tg-btn');
+            const hoverElements = document.querySelectorAll('a, button, .term-btn, .card, .project-wide, .nav-tg-btn');
 
             clickElements.forEach(el => {
                 el.removeEventListener('click', playClickSound);
@@ -837,7 +887,7 @@
                     cursor.style.top = e.clientY + 'px';
                 });
                 
-                document.querySelectorAll('a, button, .card, .term-btn').forEach(el => {
+                document.querySelectorAll('a, button, .card, .term-btn, .nav-tg-btn').forEach(el => {
                     el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
                     el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
                 });
