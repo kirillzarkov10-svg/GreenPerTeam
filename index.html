@@ -61,7 +61,7 @@
             z-index: 10000;
             box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
             transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, width 0.3s, height 0.3s;
+            transition: transform 0.05s linear, width 0.3s, height 0.3s;
             display: none;
         }
 
@@ -70,13 +70,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10%;
+            padding: 20px 5%;
             background-color: rgba(3, 7, 18, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 255, 102, 0.15);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
@@ -99,7 +100,7 @@
         nav a {
             color: var(--text-main);
             text-decoration: none;
-            margin-left: 30px;
+            margin-left: 25px;
             font-weight: 600;
             font-size: 0.95rem;
             text-transform: uppercase;
@@ -130,11 +131,11 @@
             width: 100%;
         }
 
-        .nav-tg-btn {
+        .nav-social-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-left: 30px;
+            margin-left: 20px;
             padding: 8px 16px;
             background: rgba(0, 255, 102, 0.05);
             border: 1px solid rgba(0, 255, 102, 0.3);
@@ -149,11 +150,23 @@
             box-shadow: 0 0 10px rgba(0, 255, 102, 0.05);
         }
 
-        .nav-tg-btn:hover {
+        .nav-social-btn.discord {
+            color: #5865F2;
+            border-color: rgba(88, 101, 242, 0.4);
+            background: rgba(88, 101, 242, 0.05);
+        }
+
+        .nav-social-btn:hover {
             background: var(--accent-color);
             color: #030712;
             box-shadow: 0 0 15px var(--accent-color);
             transform: translateY(-1px);
+        }
+
+        .nav-social-btn.discord:hover {
+            background: #5865F2;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
         }
 
         /* Главный экран */
@@ -164,7 +177,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 120px 20px 60px;
+            padding: 140px 20px 60px;
             background: radial-gradient(circle at center, rgba(0, 255, 102, 0.08) 0%, transparent 65%);
         }
 
@@ -230,8 +243,7 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.9rem;
             color: #22c55e;
-            min-height: 150px;
-            max-height: 250px;
+            height: 180px;
             overflow-y: auto;
         }
 
@@ -479,9 +491,6 @@
 
         .badge-status {
             display: inline-block;
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.3);
             padding: 6px 14px;
             font-size: 0.75rem;
             border-radius: 6px;
@@ -508,6 +517,12 @@
             background: rgba(59, 130, 246, 0.15);
             color: #60a5fa;
             border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .project-wide.type-glitch .badge-status {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .project-wide .btn-action {
@@ -593,6 +608,7 @@
         .ideas-section {
             padding: 100px 10%;
             background: radial-gradient(circle at bottom, rgba(0, 255, 102, 0.05) 0%, transparent 60%);
+            text-align: center;
         }
 
         .ideas-container {
@@ -670,6 +686,25 @@
             box-shadow: 0 0 25px rgba(0, 255, 102, 0.05);
         }
 
+        .auth-panel button {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .auth-panel button:hover {
+            background: var(--accent-color);
+            color: #030712;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
         /* АДМИН-ПАНЕЛЬ СМОТРЕТЬ ИДЕИ */
         .admin-panel {
             max-width: 800px;
@@ -726,6 +761,11 @@
             color: #ef4444;
             cursor: pointer;
             font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .delete-idea-btn:hover {
+            transform: scale(1.2);
         }
 
         /* Кнопка "Наверх" */
@@ -752,6 +792,12 @@
         .scroll-top-btn.visible {
             opacity: 1;
             visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            background: var(--accent-color);
+            color: #030712;
+            box-shadow: 0 0 15px var(--accent-color);
         }
 
         footer {
@@ -784,7 +830,10 @@
             <a href="#team">Команда</a>
             <a href="#projects">Разработки</a>
             <a href="#ideas">Идеи</a>
-            <a href="https://t.me/GreenPerTeam" class="nav-tg-btn" target="_blank">
+            <a href="https://discord.gg/RGuZ34TE8G" class="nav-social-btn discord" target="_blank">
+                <i class="fa-brands fa-discord"></i> Discord
+            </a>
+            <a href="https://t.me/GreenPerTeam" class="nav-social-btn" target="_blank">
                 <i class="fa-brands fa-telegram"></i> Канал
             </a>
         </nav>
@@ -804,8 +853,8 @@
                 <div class="terminal-title">greenper_core.sh</div>
             </div>
             <div class="terminal-body" id="termBody">
-                <div>> Инициализация ядра GreenPer... Готово.</div>
-                <div>> Нажимай на кнопки ниже, чтобы запустить системные логи.</div>
+                <div>&gt; Инициализация ядра GreenPer... Готово.</div>
+                <div>&gt; Нажимай на кнопки ниже, чтобы запустить системные логи.</div>
             </div>
             <div style="padding: 0 20px 20px;">
                 <div class="terminal-input-line">
@@ -887,15 +936,16 @@
     <section class="projects-section" id="projects">
         <h2 class="section-title">Наши <span>Проекты</span></h2>
 
-        <div class="project-wide type-gmod">
+        <!-- ДОБАВЛЕННЫЙ АДДОН -->
+        <div class="project-wide type-glitch">
             <div class="project-info">
                 <div class="badge-status">Garry's Mod аддон</div>
-                <h3>Custom GMod Addon</h3>
-                <p>Новое функциональное дополнение для Garry's Mod, разработанное нашей командой. Оптимизированный Lua-скрипт, улучшающий игровой процесс и добавляющий уникальные механики на сервер.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=ССЫЛКА_НА_ТВОЙ_НОВЫЙ_АДДОН" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
+                <h3>The Glitch Loop: Reality Collapse</h3>
+                <p>Уникальная модификация, симулирующая разрушение реальности внутри игрового движка. Визуальные аномалии, пространственные петли и кастомные сбои интерфейса, создающие неповторимую хоррор-атмосферу.</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
             </div>
             <div class="project-image">
-                <img src="gmod_addon.jpg" alt="GMod Addon" onerror="this.style.display='none';">
+                <img src="glitch_loop.jpg" alt="The Glitch Loop" onerror="this.style.display='none';">
             </div>
         </div>
 
@@ -928,7 +978,7 @@
         <h2 class="section-title">Линия <span>Развития</span></h2>
         <div class="roadmap-container">
             <div class="roadmap-item active">
-                <div class="roadmap-date">ЕТА: В ПРОЦЕССЕ</div>
+                <div class="roadmap-date">ETA: В ПРОЦЕССЕ</div>
                 <h4>Релиз лаунчера приложений</h4>
                 <p>Проектирование и оптимизация централизованной оболочки для быстрого запуска внутренних утилит команды.</p>
             </div>
@@ -961,180 +1011,151 @@
 
         <div class="auth-panel" id="authPanel">
             <div class="form-group">
-                <label for="adminPass">Ключ дешифрования (Пароль)</label>
-                <input type="password" id="adminPass" placeholder="Введите пароль...">
+                <label for="adminPass">Пароль Администратора</label>
+                <input type="password" id="adminPass" placeholder="Введите пароль для просмотра идей...">
             </div>
-            <button class="term-btn" style="width:100%; padding: 10px;" onclick="checkAdminAccess()">Войти в терминал управления</button>
+            <button onclick="loginAdmin()">Войти в систему</button>
         </div>
 
         <div class="admin-panel" id="adminPanel">
-            <h3>Панель управления идеями <button onclick="closeAdminPanel()" style="background:none; border:none; color:#9ca3af; cursor:pointer;">✕</button></h3>
-            <div id="ideasLogsList"></div>
+            <h3>Панель управления идеями <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.9rem;">[ Выйти ]</button></h3>
+            <div id="ideasLogsList">
+                <!-- Сюда динамически загружаются идеи -->
+            </div>
         </div>
     </section>
 
-    <a href="#" class="scroll-top-btn" id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i></a>
+    <div class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
 
     <footer>
-        <p>&copy; 2026 GreenPer Team. Интегрированные UI-технологии. Присоединяйтесь к нашему <a href="https://t.me/GreenPerTeam" target="_blank">Telegram-каналу</a>.</p>
+        <p>&copy; 2026 <a href="#">GreenPer Team</a>. Все права защищены кубами и кодом.</p>
     </footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-        // --- КОНФИГУРАЦИЯ БАЗЫ ДАННЫХ (БЕСПЛАТНЫЙ ТЕСТОВЫЙ СЕРВЕР) ---
-        // Эти данные открыты, чтобы сайт работал прямо «из коробки» без бэкенда.
-        const firebaseConfig = {
-            databaseURL: "https://greenper-ideas-default-rtdb.firebaseio.com/"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const ideasRef = ref(db, "ideas");
-
-        // Отправка новой идеи в глобальную базу
-        window.submitIdea = function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const ideatext = document.getElementById('ideatext').value;
-            const date = new Date().toLocaleString('ru-RU');
-
-            push(ideasRef, { username, ideatext, date })
-                .then(() => {
-                    alert('Идея успешно отправлена в облако GreenPer! Её увидят все админы.');
-                    document.getElementById('ideaForm').reset();
-                })
-                .catch(() => alert('Ошибка сети при отправке.'));
-        };
-
-        // Загрузка и обновление списка идей для админа в реальном времени
-        window.renderIdeasGlobal = function() {
-            onValue(ideasRef, (snapshot) => {
-                const listContainer = document.getElementById('ideasLogsList');
-                const data = snapshot.val();
-                
-                if (!data) {
-                    listContainer.innerHTML = '<p style="color:var(--text-muted);">Облако пусто. Идей пока нет.</p>';
-                    return;
-                }
-
-                listContainer.innerHTML = '';
-                Object.keys(data).forEach((key) => {
-                    const idea = data[key];
-                    listContainer.innerHTML += `
-                        <div class="idea-box">
-                            <button class="delete-idea-btn" onclick="deleteIdeaGlobal('${key}')">✕</button>
-                            <div><strong>Отправитель:</strong> ${idea.username} <span class="date">${idea.date}</span></div>
-                            <p>${idea.ideatext}</p>
-                        </div>
-                    `;
-                });
-            });
-        };
-
-        // Удаление идеи из облака всеми админами
-        window.deleteIdeaGlobal = function(id) {
-            if(confirm("Удалить это предложение из общей базы данных навсегда?")) {
-                const itemRef = ref(db, `ideas/${id}`);
-                remove(itemRef);
-            }
-        };
-    </script>
-
     <script>
-        // --- UI ЗВУКИ И АНИМАЦИИ ---
-        let audioCtx = null;
-        function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-        function playClickSound() {
-            initAudio(); if (!audioCtx) return;
-            let osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-            osc.type = 'sine'; osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.04, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.04);
-            osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.04);
-        }
-        function playHoverSound() {
-            initAudio(); if (!audioCtx) return;
-            let osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-            osc.type = 'triangle'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.03);
-            gain.gain.setValueAtTime(0.015, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.03);
-            osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.03);
-        }
-        function playTypeSound() {
-            initAudio(); if (!audioCtx) return;
-            for (let i = 0; i < 3; i++) {
-                let timeOffset = i * 0.03;
-                let osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-                osc.type = 'sine'; osc.frequency.setValueAtTime(1500 - (i * 200), audioCtx.currentTime + timeOffset);
-                gain.gain.setValueAtTime(0.01, audioCtx.currentTime + timeOffset); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + timeOffset + 0.02);
-                osc.connect(gain); gain.connect(audioCtx.destination); osc.start(audioCtx.currentTime + timeOffset); osc.stop(audioCtx.currentTime + timeOffset + 0.02);
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const clickElements = document.querySelectorAll('a, button, .term-btn, .nav-tg-btn');
-            const hoverElements = document.querySelectorAll('a, button, .term-btn, .card, .project-wide, .nav-tg-btn, .ideas-container button');
-            clickElements.forEach(el => el.addEventListener('click', playClickSound));
-            hoverElements.forEach(el => el.addEventListener('mouseenter', playHoverSound));
-
-            const cursor = document.getElementById('custom-cursor');
-            if (window.matchMedia("(pointer: fine)").matches) {
-                cursor.style.display = 'block';
-                document.addEventListener('mousemove', (e) => {
-                    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-                });
-                document.querySelectorAll('a, button, .card, .term-btn, .nav-tg-btn, .ideas-container button').forEach(el => {
-                    el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
-                    el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
-                });
-            }
-        });
-
-        // --- ЛОГИКА ТЕРМИНАЛА ---
-        const termBody = document.getElementById('termBody');
+        /* 1. Логика интерактивного терминала */
         function runCommand(cmd) {
-            if (cmd === 'clear') { termBody.innerHTML = ''; return; }
-            playTypeSound();
-            let response = '';
-            if (cmd === 'help') response = 'Доступные директории: <br> [!] ./status - проверка систем <br> [!] ./secret - зашифрованный лог';
-            else if (cmd === 'status') response = '<span style="color:#00ff66;">[OK]</span> Ядро: Стабильно<br><span style="color:#00ff66;">[OK]</span> Интерфейс: База данных Firebase подключена.';
-            else if (cmd === 'secret') response = '<span style="color:#eab308;">[WARN]</span> Внимание: Код старого аддона Puppeteer успешно интегрирован в защищенный сектор.';
-            termBody.innerHTML += `<div style="color:var(--text-muted); margin-top:8px;">$ run ${cmd}</div><div>${response}</div>`;
+            const termBody = document.getElementById('termBody');
+            let output = '';
+
+            if (cmd === 'clear') {
+                termBody.innerHTML = '<div>&gt; Терминал очищен. Жду указаний...</div>';
+                return;
+            }
+
+            switch(cmd) {
+                case 'help':
+                    output = '<div>&gt; Доступные модули:<br>./status - проверить состояние серверов<br>./secret - запустить скрытый протокол ядра<br>clear - очистить логи</div>';
+                    break;
+                case 'status':
+                    output = '<div>&gt; Статус систем:<br>- Main Core: ONLINE<br>- Proxy DNS Layer: 14 nodes OPERATIONAL<br>- Per4ik Shop DB: SYNCED<br>- Текущий пинг: 14ms</div>';
+                    break;
+                case 'secret':
+                    output = '<div>&gt; <span style="color: #ef4444;">ВНИМАНИЕ!</span> Протокол активирован. "Зелёный перец" следит за чистотой твоего исходного кода. Не используй глобальные переменные вхолостую!</div>';
+                    break;
+                default:
+                    output = '<div>&gt; Ошибка: неизвестная команда.</div>';
+            }
+
+            termBody.innerHTML += `<div style="margin-top:8px; color:#ffffff;">$ ./${cmd}</div>${output}`;
             termBody.scrollTop = termBody.scrollHeight;
         }
 
-        // Кнопка наверх
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.onscroll = function() {
-            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) scrollTopBtn.classList.add('visible');
-            else scrollTopBtn.classList.remove('visible');
-        };
-
-        // --- УПРАВЛЕНИЕ АВТОРИЗАЦИЕЙ И АДМИНКОЙ ---
-        function toggleAuthPanel() {
-            const authPanel = document.getElementById('authPanel');
-            authPanel.style.display = (authPanel.style.display === 'block') ? 'none' : 'block';
+        /* 2. Кастомный курсор (только для десктопов) */
+        const cursor = document.getElementById('custom-cursor');
+        if (matchMedia('(pointer: fine)').matches) {
+            cursor.style.display = 'block';
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.8)');
+            document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
         }
 
-        function checkAdminAccess() {
-            const enteredPass = document.getElementById('adminPass').value;
-            // Твой секретный пароль команды
-            if (enteredPass === 'greenper2026') {
-                document.getElementById('authPanel').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                document.getElementById('adminPanel').scrollIntoView();
-                // Запуск рендеринга данных из Firebase
-                if(window.renderIdeasGlobal) {
-                    window.renderIdeasGlobal();
-                }
+        /* 3. Кнопка Наверх */
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
             } else {
-                alert('Ошибка дешифрования: Отказано в доступе.');
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* 4. Работа с идеями пользователей через LocalStorage */
+        function submitIdea(e) {
+            e.preventDefault();
+            const name = document.getElementById('username').value;
+            const text = document.getElementById('ideatext').value;
+            const dateStr = new Date().toLocaleString('ru-RU');
+
+            const newIdea = { name, text, date: dateStr };
+            let ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
+            ideas.push(newIdea);
+            localStorage.setItem('gp_ideas', JSON.stringify(ideas));
+
+            alert('Спасибо! Твоя идея успешно отправлена на сервера GreenPer Team.');
+            document.getElementById('ideaForm').reset();
+            
+            if(document.getElementById('adminPanel').style.display === 'block') {
+                renderIdeas();
             }
         }
 
-        function closeAdminPanel() {
+        /* 5. Админ-панель */
+        function toggleAuthPanel() {
+            const authPanel = document.getElementById('authPanel');
+            authPanel.style.display = authPanel.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function loginAdmin() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass === 'greenper2026') {
+                document.getElementById('authPanel').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                renderIdeas();
+            } else {
+                alert('Доступ заблокирован. Неверный хэш-ключ администратора.');
+            }
+        }
+
+        function logoutAdmin() {
             document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+        }
+
+        function renderIdeas() {
+            const container = document.getElementById('ideasLogsList');
+            const ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
+            
+            if(ideas.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);">Идей от пользователей пока не поступало.</p>';
+                return;
+            }
+
+            container.innerHTML = ideas.map((idea, index) => `
+                <div class="idea-box">
+                    <button class="delete-idea-btn" onclick="deleteIdea(${index})"><i class="fa-solid fa-trash"></i></button>
+                    <strong>${escapeHtml(idea.name)}</strong> <span class="date">${idea.date}</span>
+                    <p>${escapeHtml(idea.text)}</p>
+                </div>
+            `).join('');
+        }
+
+        function deleteIdea(index) {
+            let ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
+            ideas.splice(index, 1);
+            localStorage.setItem('gp_ideas', JSON.stringify(ideas));
+            renderIdeas();
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
 </body>
