@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenPer Team | Официальный сайт</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Подключаем децентрализованную P2P базу данных GunDB -->
+    <!-- Децентрализованная P2P база данных GunDB -->
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <style>
-        /* Общие стили и обнуление */
+        /* Общие стили и сброс */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
             scroll-behavior: smooth;
         }
 
         :root {
-            --bg-color: #030712;
-            --card-bg: rgba(17, 24, 39, 0.7);
+            --bg-color: #02040a;
+            --card-bg: rgba(10, 15, 30, 0.7);
             --accent-color: #00ff66;
-            --accent-glow: rgba(0, 255, 102, 0.3);
+            --accent-glow: rgba(0, 255, 102, 0.4);
             --accent-hover: #10b981;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: rgba(255, 255, 255, 0.05);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(0, 255, 102, 0.12);
         }
 
         body {
@@ -36,7 +36,7 @@
             position: relative;
         }
 
-        /* Задний фон-сетка */
+        /* Анимированный футуристичный фон (Aurora/Mesh + Сетка) */
         body::before {
             content: '';
             position: fixed;
@@ -45,14 +45,22 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(0, 255, 102, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 102, 0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 102, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.04) 0%, transparent 45%),
+                linear-gradient(rgba(0, 255, 102, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 102, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
             z-index: -1;
             pointer-events: none;
+            animation: backgroundPulse 15s ease-in-out infinite alternate;
         }
 
-        /* Кастомный курсор */
+        @keyframes backgroundPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Кастомный умный курсор */
         #custom-cursor {
             width: 8px;
             height: 8px;
@@ -61,191 +69,181 @@
             position: fixed;
             pointer-events: none;
             z-index: 10000;
-            box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-color), 0 0 24px var(--accent-color);
             transform: translate(-50%, -50%);
-            transition: transform 0.05s linear, width 0.3s, height 0.3s;
+            transition: transform 0.08s ease-out, width 0.2s, height 0.2s;
             display: none;
         }
 
-        /* Шапка сайта */
+        /* Премиальная Шапка (Glassmorphic Blur) */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background-color: rgba(3, 7, 18, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            padding: 18px 6%;
+            background: rgba(2, 4, 10, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 102, 0.15);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent-color);
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--accent-glow);
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            text-shadow: 0 0 12px var(--accent-glow);
         }
 
         nav {
             display: flex;
             align-items: center;
+            gap: 15px;
         }
 
         nav a {
-            color: var(--text-main);
+            color: var(--text-muted);
             text-decoration: none;
-            margin-left: 25px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-color);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 8px var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 6px;
         }
 
         nav a:hover {
             color: var(--accent-color);
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            background: rgba(0, 255, 102, 0.05);
         }
 
         .nav-social-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-left: 20px;
-            padding: 8px 16px;
-            background: rgba(0, 255, 102, 0.05);
-            border: 1px solid rgba(0, 255, 102, 0.3);
-            color: var(--accent-color);
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-social-btn.discord {
             color: #5865F2;
-            border-color: rgba(88, 101, 242, 0.4);
-            background: rgba(88, 101, 242, 0.05);
+            border-color: rgba(88, 101, 242, 0.25);
+            background: rgba(88, 101, 242, 0.03);
         }
 
         .nav-social-btn:hover {
-            background: var(--accent-color);
-            color: #030712;
-            box-shadow: 0 0 15px var(--accent-color);
-            transform: translateY(-1px);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(0, 255, 102, 0.03);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.08);
+            transform: translateY(-2px);
         }
 
         .nav-social-btn.discord:hover {
-            background: #5865F2;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+            background: rgba(88, 101, 242, 0.1);
+            border-color: #5865F2;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.2);
         }
 
-        /* Главный экран */
+        /* Главный Экран (Hero Section) */
         .hero {
-            min-height: 80vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 140px 20px 60px;
-            background: radial-gradient(circle at center, rgba(0, 255, 102, 0.08) 0%, transparent 65%);
+            padding: 150px 20px 60px;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 15px;
+            font-size: 5.5rem;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
             font-weight: 900;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            line-height: 1;
+            background: linear-gradient(180deg, #ffffff 30%, #64748b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero h1 span {
-            color: var(--accent-color);
             background: linear-gradient(90deg, #00ff66 0%, #10b981 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(0, 255, 102, 0.3));
+            filter: drop-shadow(0 0 20px rgba(0, 255, 102, 0.2));
         }
 
-        /* КИБЕР-ТЕРМИНАЛ */
+        /* Кибер-Терминал (Высокий контраст) */
         .terminal-container {
             width: 100%;
-            max-width: 600px;
-            background: rgba(5, 10, 20, 0.85);
-            border: 1px solid rgba(0, 255, 102, 0.2);
-            border-radius: 12px;
-            margin-top: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(0, 255, 102, 0.05);
+            max-width: 650px;
+            background: rgba(5, 8, 16, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-top: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
             overflow: hidden;
             text-align: left;
+            backdrop-filter: blur(10px);
         }
 
         .terminal-header {
-            background: rgba(17, 24, 39, 0.8);
-            padding: 10px 15px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
         }
 
         .terminal-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
+            margin-right: 6px;
         }
         .td-1 { background: #ef4444; }
         .td-2 { background: #eab308; }
         .td-3 { background: #22c55e; }
 
         .terminal-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             font-family: monospace;
-            margin-left: 10px;
+            margin-left: 12px;
+            letter-spacing: 1px;
         }
 
         .terminal-body {
-            padding: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            color: #22c55e;
-            height: 180px;
+            padding: 24px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+            height: 190px;
             overflow-y: auto;
         }
 
@@ -258,121 +256,135 @@
         }
 
         .term-btn {
-            background: rgba(0, 255, 102, 0.05);
-            border: 1px solid rgba(0, 255, 102, 0.2);
+            background: rgba(0, 255, 102, 0.03);
+            border: 1px solid rgba(0, 255, 102, 0.15);
             color: var(--accent-color);
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 6px;
             cursor: pointer;
             font-family: monospace;
-            font-size: 0.8rem;
-            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .term-btn:hover {
             background: var(--accent-color);
-            color: #030712;
-            box-shadow: 0 0 10px var(--accent-color);
+            color: #02040a;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-1px);
         }
 
-        /* СЕКЦИЯ СТАТИСТИКИ */
+        /* Премиум Секция Статистики */
         .stats-section {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            padding: 40px 10%;
-            background: rgba(17, 24, 39, 0.4);
+            gap: 80px;
+            padding: 50px 10%;
+            background: rgba(10, 15, 30, 0.4);
             border-top: 1px solid rgba(255, 255, 255, 0.02);
             border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
-            min-width: 180px;
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-glow);
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
             font-family: monospace;
+            background: linear-gradient(180deg, #ffffff 40%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 5px;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            font-weight: 600;
         }
 
-        /* Секция Команды */
+        /* Карточки Команды (Glow-эффект) */
         .team-section {
-            padding: 100px 10%;
+            padding: 120px 8%;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
+            font-size: 3rem;
+            margin-bottom: 70px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 800;
+            letter-spacing: 2px;
+            font-weight: 900;
         }
 
         .section-title span {
             color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-glow);
+            text-shadow: 0 0 15px var(--accent-glow);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 50px 35px;
-            border-radius: 16px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            padding: 50px 40px;
+            border-radius: 24px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 255, 102, 0.03), transparent 50%);
+            pointer-events: none;
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             border-color: rgba(0, 255, 102, 0.4);
-            box-shadow: 0 15px 40px rgba(0, 255, 102, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 255, 102, 0.08);
         }
 
         .avatar-container {
-            width: 140px;
-            height: 140px;
-            background-color: #111827;
+            width: 130px;
+            height: 130px;
+            background-color: #050810;
             border-radius: 50%;
-            margin: 0 auto 25px;
-            border: 3px solid rgba(0, 255, 102, 0.3);
+            margin: 0 auto 30px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.1);
-            transition: transform 0.4s ease;
+            transition: all 0.4s ease;
         }
 
         .card:hover .avatar-container {
-            transform: scale(1.05);
             border-color: var(--accent-color);
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.25);
+            box-shadow: 0 0 25px var(--accent-glow);
         }
 
         .avatar-container img {
@@ -382,100 +394,99 @@
         }
 
         .card h3 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            font-weight: 800;
             letter-spacing: 0.5px;
+            color: #ffffff;
         }
 
         .role {
             color: var(--accent-color);
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-weight: 800;
+            margin-bottom: 22px;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-shadow: 0 0 8px var(--accent-glow);
+            font-size: 0.75rem;
+            letter-spacing: 2.5px;
         }
 
         .card p {
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             font-size: 0.95rem;
-            font-weight: 400;
+            line-height: 1.7;
         }
 
-        /* Кнопки соцсетей */
+        /* Социальные Кнопки */
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .btn-social {
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 46px;
-            height: 46px;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-social:hover {
-            background: var(--accent-color);
-            color: #030712;
-            border-color: var(--accent-color);
+            background: #ffffff;
+            color: #02040a;
+            border-color: #ffffff;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 102, 0.3);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.1);
         }
 
-        /* Секция Проектов */
+        /* Карточки Проектов (Широкие Премиум-блоки) */
         .projects-section {
-            padding: 100px 10%;
-            background: linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.3) 100%);
+            padding: 120px 8%;
         }
 
         .project-wide {
             display: flex;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            max-width: 1050px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            max-width: 1100px;
             margin: 0 auto 50px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-wide:hover {
             border-color: rgba(0, 255, 102, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 102, 0.02);
+            transform: translateY(-6px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(0, 255, 102, 0.03);
         }
 
         .project-info {
-            padding: 45px;
-            flex: 1;
+            padding: 55px;
+            flex: 1.2;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .project-image {
-            width: 40%;
-            background: #111827;
+            width: 42%;
+            background: #050810;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 1px solid rgba(255, 255, 255, 0.03);
             overflow: hidden;
             position: relative;
         }
@@ -484,208 +495,230 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-wide:hover .project-image img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .badge-status {
             display: inline-block;
             padding: 6px 14px;
-            font-size: 0.75rem;
-            border-radius: 6px;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-size: 0.7rem;
+            border-radius: 8px;
+            font-weight: 800;
+            margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             align-self: flex-start;
         }
 
         .project-wide.type-lostmedia .badge-status {
-            background: rgba(239, 68, 68, 0.15);
+            background: rgba(239, 68, 68, 0.08);
             color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            border: 1px solid rgba(239, 68, 68, 0.2);
         }
 
         .project-wide.type-shop .badge-status {
-            background: rgba(0, 255, 102, 0.1);
+            background: rgba(0, 255, 102, 0.06);
             color: var(--accent-color);
-            border: 1px solid rgba(0, 255, 102, 0.2);
-        }
-
-        .project-wide.type-gmod .badge-status {
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(0, 255, 102, 0.15);
         }
 
         .project-wide.type-glitch .badge-status {
-            background: rgba(168, 85, 247, 0.15);
+            background: rgba(168, 85, 247, 0.08);
             color: #c084fc;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .project-wide .btn-action {
-            align-self: flex-start;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         .project-info h3 {
-            font-size: 2.1rem;
-            font-weight: 800;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
         }
 
         .project-info p {
             color: var(--text-muted);
             font-size: 1rem;
+            line-height: 1.7;
         }
 
+        /* Премиум Акцентные Кнопки */
         .btn-action {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: var(--accent-color);
-            color: #030712;
-            padding: 14px 30px;
-            border-radius: 10px;
+            color: #02040a;
+            padding: 16px 32px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 700;
-            margin-top: 25px;
+            font-weight: 800;
+            margin-top: 35px;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px var(--accent-glow);
+        }
+
+        .btn-action i {
+            transition: transform 0.3s ease;
         }
 
         .btn-action:hover {
             background: #ffffff;
-            transform: translateY(-2px);
+            color: #02040a;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255,255,255,0.2);
         }
 
-        /* ТАЙМЛАЙН / ROADMAP */
+        .btn-action:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Линия Развития (Roadmap) */
         .roadmap-section {
-            padding: 80px 10%;
-            background: rgba(17, 24, 39, 0.2);
+            padding: 100px 8%;
         }
 
         .roadmap-container {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
-            padding-left: 30px;
-            border-left: 2px solid rgba(0, 255, 102, 0.2);
+            padding-left: 35px;
+            border-left: 2px solid rgba(255, 255, 255, 0.05);
         }
 
         .roadmap-item {
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .roadmap-item::before {
             content: '';
             position: absolute;
-            left: -37px;
-            top: 5px;
+            left: -42px;
+            top: 6px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #1f2937;
-            border: 2px solid rgba(0, 255, 102, 0.5);
+            background: #0a0f1e;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
         }
 
         .roadmap-item.active::before {
             background: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-color);
         }
 
         .roadmap-date {
             font-family: monospace;
             color: var(--accent-color);
-            font-size: 0.85rem;
-            margin-bottom: 5px;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        /* СЕКЦИЯ ПРЕДЛОЖЕНИЙ И ИДЕЙ */
+        .roadmap-item h4 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Форма сбора идей и P2P панель */
         .ideas-section {
-            padding: 100px 10%;
-            background: radial-gradient(circle at bottom, rgba(0, 255, 102, 0.05) 0%, transparent 60%);
+            padding: 120px 8%;
+            background: radial-gradient(circle at bottom, rgba(0, 255, 102, 0.03) 0%, transparent 60%);
             text-align: center;
         }
 
         .ideas-container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            padding: 50px;
+            border-radius: 24px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             flex-direction: column;
             text-align: left;
         }
 
         .form-group label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--accent-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            font-weight: 800;
         }
 
         .form-group input, .form-group textarea {
-            background: rgba(3, 7, 18, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 16px;
-            border-radius: 8px;
+            background: rgba(2, 4, 10, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 18px;
+            border-radius: 10px;
             color: var(--text-main);
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
         }
 
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 12px rgba(0, 255, 102, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.15);
+            background: rgba(2, 4, 10, 0.8);
         }
 
         .ideas-container button {
             width: 100%;
             background: var(--accent-color);
-            color: #030712;
+            color: #02040a;
             border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 20px var(--accent-glow);
         }
 
         .ideas-container button:hover {
-            box-shadow: 0 0 20px var(--accent-color);
-            transform: translateY(-1px);
+            box-shadow: 0 12px 28px var(--accent-color);
+            transform: translateY(-2px);
         }
 
-        /* КИБЕР-ФОРМА АВТОРИЗАЦИИ АДМИНА */
+        /* P2P Админка */
         .auth-panel {
-            max-width: 400px;
+            max-width: 420px;
             margin: 40px auto 0;
-            background: rgba(17, 24, 39, 0.9);
-            border: 1px solid rgba(0, 255, 102, 0.3);
-            border-radius: 16px;
-            padding: 25px;
+            background: rgba(10, 15, 30, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
             display: none;
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .auth-panel button {
@@ -693,104 +726,119 @@
             background: transparent;
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 700;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
             cursor: pointer;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
         }
 
         .auth-panel button:hover {
             background: var(--accent-color);
-            color: #030712;
-            box-shadow: 0 0 15px var(--accent-color);
+            color: #02040a;
+            box-shadow: 0 0 20px var(--accent-color);
         }
 
-        /* АДМИН-ПАНЕЛЬ СМОТРЕТЬ ИДЕИ */
         .admin-panel {
-            max-width: 800px;
+            max-width: 850px;
             margin: 40px auto 0;
-            background: rgba(5, 10, 20, 0.95);
+            background: rgba(4, 6, 12, 0.98);
             border: 1px solid #ef4444;
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 24px;
+            padding: 40px;
             display: none;
-            box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+            box-shadow: 0 30px 60px rgba(239, 68, 68, 0.1);
         }
 
         .admin-panel h3 {
             color: #ef4444;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 1.3rem;
         }
 
         .p2p-status-badge {
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            background: rgba(0, 255, 102, 0.1);
+            font-size: 0.7rem;
+            padding: 6px 12px;
+            background: rgba(0, 255, 102, 0.05);
             color: var(--accent-color);
-            border: 1px solid rgba(0, 255, 102, 0.2);
-            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 102, 0.15);
+            border-radius: 8px;
             font-family: monospace;
+            letter-spacing: 0.5px;
         }
 
         .idea-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
             text-align: left;
             position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .idea-box:hover {
+            border-color: rgba(255,255,255,0.1);
         }
 
         .idea-box strong {
             color: var(--accent-color);
+            font-size: 1.05rem;
         }
 
         .idea-box .date {
             font-size: 0.75rem;
             color: var(--text-muted);
-            margin-left: 10px;
+            margin-left: 12px;
+            font-family: monospace;
         }
 
         .idea-box p {
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 0.95rem;
+            color: #e2e8f0;
+            line-height: 1.6;
         }
 
         .delete-idea-btn {
             position: absolute;
-            right: 15px;
-            top: 15px;
+            right: 20px;
+            top: 20px;
             background: none;
             border: none;
             color: #ef4444;
             cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.2s;
+            font-size: 1.05rem;
+            transition: transform 0.2s, color 0.2s;
+            opacity: 0.6;
         }
 
         .delete-idea-btn:hover {
-            transform: scale(1.2);
+            transform: scale(1.15);
+            color: #f87171;
+            opacity: 1;
         }
 
-        /* Кнопка "Наверх" */
+        /* Кнопка скролла наверх */
         .scroll-top-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 102, 0.3);
+            bottom: 35px;
+            right: 35px;
+            background: rgba(10, 15, 30, 0.8);
+            border: 1px solid var(--border-color);
             color: var(--accent-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -798,7 +846,8 @@
             z-index: 999;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .scroll-top-btn.visible {
@@ -808,16 +857,17 @@
 
         .scroll-top-btn:hover {
             background: var(--accent-color);
-            color: #030712;
-            box-shadow: 0 0 15px var(--accent-color);
+            color: #02040a;
+            box-shadow: 0 8px 20px var(--accent-glow);
+            transform: translateY(-3px);
         }
 
-        /* ФУТЕР */
+        /* Элегантный Подвал (Footer) */
         footer {
             text-align: center;
-            padding: 50px 20px;
-            border-top: 1px solid var(--border-color);
-            background: #020617;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            background: #010206;
         }
 
         .footer-content {
@@ -826,26 +876,27 @@
         }
 
         .footer-links {
-            margin-bottom: 15px;
-            font-size: 0.95rem;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         .footer-links span {
-            color: var(--accent-color);
+            color: #ffffff;
             font-weight: 700;
         }
 
         .footer-call {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
 
         .footer-call a {
             color: #ffffff;
             text-decoration: none;
-            position: relative;
+            font-weight: 700;
             transition: color 0.3s ease;
         }
 
@@ -853,8 +904,10 @@
         .footer-call a.ds-link:hover { color: #5865F2; }
 
         .footer-copyright {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.15);
+            font-family: monospace;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -863,7 +916,7 @@
     <div id="custom-cursor"></div>
 
     <header>
-        <div class="logo">GreenPer Team</div>
+        <div class="logo">GreenPer <span>Team</span></div>
         <nav>
             <a href="#team" onclick="playClickSound()">Команда</a>
             <a href="#projects" onclick="playClickSound()">Разработки</a>
@@ -879,8 +932,8 @@
 
     <section class="hero">
         <h1>GreenPer <span>Team</span></h1>
-        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 10px;">
-            Разработка софта, утилит и игровых дополнений. Официальный сайт команды.
+        <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 580px; margin-top: 12px; font-weight: 500;">
+            Разработка экосистемы приватного софта, утилит и уникальных игровых дополнений.
         </p>
 
         <div class="terminal-container">
@@ -891,10 +944,10 @@
                 <div class="terminal-title">greenper_core.sh</div>
             </div>
             <div class="terminal-body" id="termBody">
-                <div>&gt; Инициализация ядра GreenPer... Готово.</div>
-                <div>&gt; Нажимай на кнопки ниже, чтобы запустить системные логи.</div>
+                <div>&gt; Инициализация ядра GreenPer... Успешно.</div>
+                <div>&gt; Нажми на системный модуль ниже для вывода логов ядра.</div>
             </div>
-            <div style="padding: 0 20px 20px;">
+            <div style="padding: 0 24px 24px;">
                 <div class="terminal-input-line">
                     <button class="term-btn" onclick="runCommand('help')">./help</button>
                     <button class="term-btn" onclick="runCommand('status')">./status</button>
@@ -908,33 +961,33 @@
     <section class="stats-section">
         <div class="stat-item">
             <div class="stat-number">3+</div>
-            <div class="stat-label">Участника команды</div>
+            <div class="stat-label">Участника ядра</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">10k+</div>
-            <div class="stat-label">Скачиваний софта</div>
+            <div class="stat-label">Загрузок софта</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">99.9%</div>
-            <div class="stat-label">Стабильность кода</div>
+            <div class="stat-label">Стабильность P2P</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">2026</div>
-            <div class="stat-label">В деле круглый год</div>
+            <div class="stat-label">Активная фаза</div>
         </div>
     </section>
 
     <section class="team-section" id="team">
-        <h2 class="section-title">Состав <span>Команды</span></h2>
+        <h2 class="section-title">Ядро <span>Команды</span></h2>
         <div class="grid">
             <div class="card">
                 <div class="avatar-container">
                     <img src="per4ik.png" alt="Per4ik" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span style="display:none; color: var(--text-muted);">[ Ава Per4ik ]</span>
+                    <span style="display:none; color: var(--text-muted); font-size: 0.8rem;">[ Per4ik Ава ]</span>
                 </div>
                 <h3>Per4ik</h3>
-                <div class="role">Идеи / Описание</div>
-                <p>Отвечает за генерацию идей, концепты, составление подробных описаний и логику работы наших будущих и текущих проектов.</p>
+                <div class="role">Идеи / Архитектура концептов</div>
+                <p>Отвечает за генерацию механик, дизайн системной логики и полное концептуальное описание векторов развития утилит.</p>
                 <div class="btn-group">
                     <a href="https://t.me/vobmy" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/per4ik148" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
@@ -944,11 +997,11 @@
             <div class="card">
                 <div class="avatar-container">
                     <img src="quach.png" alt="Quach" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span style="display:none; color: var(--text-muted);">[ Ава Quach ]</span>
+                    <span style="display:none; color: var(--text-muted); font-size: 0.8rem;">[ Quach Ава ]</span>
                 </div>
                 <h3>Quach</h3>
                 <div class="role">Разработчик кода</div>
-                <p>Занимается технической реализацией, написанием чистого кода, архитектурой приложений и оптимизацией всех утилит команды.</p>
+                <p>Техническая реализация, контроль за чистотой исходного кода, интеграция асинхронных модулей и оптимизация интерфейсов.</p>
                 <div class="btn-group">
                     <a href="https://t.me/Quac23h" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/kirillzarkov10-svg" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
@@ -958,11 +1011,11 @@
             <div class="card">
                 <div class="avatar-container">
                     <img src="new_member.png" alt="Skelet" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span style="display:none; color: var(--text-muted);">[ Аватар ]</span>
+                    <span style="display:none; color: var(--text-muted); font-size: 0.8rem;">[ Skelet Ава ]</span>
                 </div>
                 <h3>Skelet</h3>
-                <div class="role">Идеи / Концепты</div>
-                <p>Генерирует уникальные концепты, продумывает фичи, логику работы софта и развивает креативные направления проектов.</p>
+                <div class="role">Идеи / Креатив</div>
+                <p>Разработка уникальных векторов проектов, проектирование фич и генерация нестандартных решений для софта команды.</p>
                 <div class="btn-group">
                     <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
@@ -972,14 +1025,14 @@
     </section>
 
     <section class="projects-section" id="projects">
-        <h2 class="section-title">Наши <span>Проекты</span></h2>
+        <h2 class="section-title">Актуальные <span>Проекты</span></h2>
 
         <div class="project-wide type-glitch">
             <div class="project-info">
-                <div class="badge-status">Garry's Mod аддон</div>
+                <div class="badge-status">Garry's Mod Модификация</div>
                 <h3>The Glitch Loop: Reality Collapse</h3>
-                <p>Уникальная модификация, симулирующая разрушение реальности внутри игрового движка. Визуальные аномалии, пространственные петли и кастомные сбои интерфейса, создающие неповторимую хоррор-атмосферу.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
+                <p>Инновационный аддон, симулирующий тотальный сбой игрового пространства внутри движка Source. Пространственные петли, кастомные визуальные аномалии рендеринга и атмосферные искажения.</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank" onclick="playSocialSound()">Смотреть в Steam <i class="fa-brands fa-steam"></i></a>
             </div>
             <div class="project-image">
                 <img src="glitch_loop.jpg" alt="The Glitch Loop" onerror="this.style.display='none';">
@@ -988,10 +1041,10 @@
 
         <div class="project-wide type-lostmedia">
             <div class="project-info">
-                <div class="badge-status">Lost Media Стим аддон</div>
+                <div class="badge-status">Восстановленный Lost Media релиз</div>
                 <h3>Steam Addon Puppeteer_Legacy</h3>
-                <p>Я нашел и восстановил «Puppeteer_Legacy» — потерянный аддон 2015 года, который позволяет перехватывать управление игроком на уровне движка.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3746548767" class="btn-action" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
+                <p>Успешный поиск, восстановление и адаптация утраченной модификации 2015 года. Позволяет осуществлять перехват управления сущностями на глубинном уровне серверной логики.</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3746548767" class="btn-action" target="_blank" onclick="playSocialSound()">Смотреть в Steam <i class="fa-brands fa-steam"></i></a>
             </div>
             <div class="project-image">
                 <img src="puppeteer.jpg" alt="Puppeteer" onerror="this.style.display='none';">
@@ -1000,10 +1053,10 @@
 
         <div class="project-wide type-shop">
             <div class="project-info">
-                <div class="badge-status">Маркетплейс</div>
-                <h3>Per4ik shop</h3>
-                <p>Наш official магазин цифровых товаров. Низкие цены на криптовалюты, смена регионов (Steam, Epic, PS, iCloud) и качественные ДНС прокси-сервера.</p>
-                <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank" onclick="playSocialSound()"><i class="fa-solid fa-cart-shopping"></i> Перейти в шоп</a>
+                <div class="badge-status">Цифровой Маркетплейс</div>
+                <h3>Per4ik Shop</h3>
+                <p>Специализированная площадка цифровых услуг. Доступные транзакции криптовалют, быстрая смена регионов платформ (Steam, Epic, PlayStation) и отказоустойчивые выделенные прокси.</p>
+                <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank" onclick="playSocialSound()">Перейти в магазин <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
             <div class="project-image">
                 <img src="shop.jpg" alt="Shop" onerror="this.style.display='none';">
@@ -1015,53 +1068,55 @@
         <h2 class="section-title">Линия <span>Развития</span></h2>
         <div class="roadmap-container">
             <div class="roadmap-item active">
-                <div class="roadmap-date">ETA: В ПРОЦЕССЕ</div>
-                <h4>Релиз лаунчера приложений</h4>
-                <p>Проектирование и оптимизация централизованной оболочки для быстрого запуска внутренних утилит команды.</p>
+                <div class="roadmap-date">МАРШРУТ: В РАЗРАБОТКЕ</div>
+                <h4>Оптимизация GreenPer Launcher</h4>
+                <p>Создание легковесной системной оболочки на C# для централизованной дистрибуции и апдейта приложений команды.</p>
             </div>
             <div class="roadmap-item">
-                <div class="roadmap-date">ETA: Q3 2026</div>
-                <h4>Обновление прокси-серверов</h4>
-                <p>Добавление новых конфигураций под актуальные обходы блокировок и ускорение пинга.</p>
+                <div class="roadmap-date">МАРШРУТ: ТЕСТИРОВАНИЕ</div>
+                <h4>Выделенные DNS-прокси узлы</h4>
+                <p>Развертывание новых приватных серверов под измененные сетевые протоколы для стабильного пинга.</p>
             </div>
         </div>
     </section>
 
     <section class="ideas-section" id="ideas">
-        <h2 class="section-title">Предложить <span>Идею</span></h2>
+        <h2 class="section-title">Предложить <span>Задумку</span></h2>
         
         <div class="ideas-container">
             <form id="ideaForm" onsubmit="submitIdea(event)">
                 <div class="form-group">
-                    <label for="username">Твой Никнейм / ТГ</label>
-                    <input type="text" id="username" placeholder="Например, @anon или Kirill" required>
+                    <label for="username">Идентификатор / Telegram ник</label>
+                    <input type="text" id="username" placeholder="Например, @quach_dev" required>
                 </div>
                 <div class="form-group">
-                    <label for="ideatext">Суть идеи / какого софта не хватает?</label>
-                    <textarea id="ideatext" rows="5" placeholder="Опиши свою задумку максимально подробно..." required></textarea>
+                    <label for="ideatext">Суть архитектуры софта или идеи</label>
+                    <textarea id="ideatext" rows="5" placeholder="Опиши стек, логику или функционал, который необходимо реализовать..." required></textarea>
                 </div>
-                <button type="submit">Отправить идею команде</button>
+                <button type="submit">Синхронизировать идею в сеть</button>
             </form>
         </div>
 
-        <p style="margin-top: 30px; font-size: 0.85rem; color: var(--accent-color); cursor: pointer; text-decoration: underline;" onclick="toggleAuthPanel()">[ Управление P2P панелью ]</p>
+        <p style="margin-top: 35px; font-size: 0.8rem; color: var(--accent-color); cursor: pointer; text-decoration: none; font-weight: 700; letter-spacing: 0.5px;" onclick="toggleAuthPanel()">
+            [ ОБОЛОЧКА АДМИНИСТРАТОРА ]
+        </p>
 
         <div class="auth-panel" id="authPanel">
             <div class="form-group">
-                <label for="adminPass">Пароль Администратора</label>
-                <input type="password" id="adminPass" placeholder="Введите пароль для p2p-синхронизации...">
+                <label for="adminPass">Ключ дешифрования сети</label>
+                <input type="password" id="adminPass" placeholder="Введите пароль доступа...">
             </div>
-            <button onclick="loginAdmin()">Войти в P2P сеть</button>
+            <button onclick="loginAdmin()">Инициализировать P2P</button>
         </div>
 
         <div class="admin-panel" id="adminPanel">
             <h3>
-                P2P Панель Управления Идеями
-                <span class="p2p-status-badge" id="p2pStatus">Сеть: Подключение...</span>
-                <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.9rem; margin-left:10px;">[ Выйти ]</button>
+                Распределенная P2P панель управления
+                <span class="p2p-status-badge" id="p2pStatus">Поиск пиров...</span>
+                <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.85rem; font-weight:700;">[ ОТКЛЮЧИТЬСЯ ]</button>
             </h3>
             <div id="ideasLogsList">
-                <!-- Сюда динамически загружаются распределенные p2p идеи -->
+                <!-- Динамические данные распределенной сети GunDB -->
             </div>
         </div>
     </section>
@@ -1073,33 +1128,28 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                Страницы проекта: <span>GreenPer Team</span> — Все права защищены кубами и кодом &copy; 2026
+                Платформа: <span>GreenPer Team Core</span> — Защищено сквозным распределенным шифрованием &copy; 2026
             </div>
             <div class="footer-call">
-                Вступайте в наш <a href="https://t.me/GreenPerTeam" class="tg-link" target="_blank" onclick="playSocialSound()">Telegram</a> и <a href="https://discord.gg/YOUR_INVITE_LINK" class="ds-link" target="_blank" onclick="playSocialSound()">Discord</a> канал!
+                Официальные хабы: <a href="https://t.me/GreenPerTeam" class="tg-link" target="_blank" onclick="playSocialSound()">Telegram channel</a> и <a href="https://discord.gg/YOUR_INVITE_LINK" class="ds-link" target="_blank" onclick="playSocialSound()">Discord server</a>
             </div>
             <div class="footer-copyright">
-                Powered by Core P2P Engine UI. All Peers Synced.
+                P2P Network Engine Status: Mesh Synced. All admin nodes linked.
             </div>
         </div>
     </footer>
 
     <script>
-        /* ИНИЦИАЛИЗАЦИЯ ДЕЦЕНТРАЛИЗОВАННОЙ P2P СЕТИ (GunDB) */
-        // Используем публичные распределенные реле-узлы для обмена пирами прямо в браузере
+        /* ДЕЦЕНТРАЛИЗОВАННАЯ P2P СЕТЬ (GunDB) */
         const gun = Gun([
             'https://gun-manhattan.herokuapp.com/gun',
             'https://gundb.herokuapp.com/gun'
         ]);
-        // Создаем распределенное p2p пространство для идей GreenPer Team
         const p2pIdeas = gun.get('greenper_team_global_p2p_ideas_2026');
-
         let localIdeasCache = [];
 
-        // Слушаем изменения в p2p сети в реальном времени
         p2pIdeas.map().on(function(data, id) {
             if (!data) return;
-            // Исключаем дубли
             const index = localIdeasCache.findIndex(item => item.id === id);
             if (index > -1) {
                 if (data.deleted) {
@@ -1110,126 +1160,100 @@
             } else if (!data.deleted) {
                 localIdeasCache.push({ id, ...data });
             }
-            
-            // Если админка открыта, перерисовываем
             if(document.getElementById('adminPanel').style.display === 'block') {
                 renderIdeas();
             }
         });
 
-        /* ПРИЯТНЫЙ ЗВУКОВОЙ ДВИЖОК (Глубокие, мягкие UI клики без писка) */
+        /* ПРЕМИАЛЬНЫЙ АУДИО-ДВИЖОК БЕЗ ПИСКА */
         let audioCtx = null;
-
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
         }
 
-        // Мягкий, глубокий клик (как в премиальной технике или дорогих играх)
         function playClickSound() {
             initAudio();
             if (!audioCtx) return;
-            
             let osc = audioCtx.createOscillator();
             let gain = audioCtx.createGain();
-            
             osc.type = 'sine';
-            // Низкая, бархатная частота вместо противного писка
-            osc.frequency.setValueAtTime(120, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
-            
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
-            
+            osc.frequency.setValueAtTime(130, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.08);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-            
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.1);
+            osc.stop(audioCtx.currentTime + 0.08);
         }
 
-        // Приятный двойной скользящий аккорд для соцсетей
         function playSocialSound() {
             initAudio();
             if (!audioCtx) return;
-
             let now = audioCtx.currentTime;
-            [220, 330].forEach((freq, i) => {
+            [200, 310].forEach((freq, i) => {
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
-                
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now + i * 0.04);
-                osc.frequency.exponentialRampToValueAtTime(freq / 2, now + i * 0.04 + 0.15);
-                
-                gain.gain.setValueAtTime(0.1, now + i * 0.04);
-                gain.gain.linearRampToValueAtTime(0, now + i * 0.04 + 0.15);
-                
+                osc.frequency.setValueAtTime(freq, now + i * 0.03);
+                osc.frequency.exponentialRampToValueAtTime(freq / 2, now + i * 0.03 + 0.12);
+                gain.gain.setValueAtTime(0.08, now + i * 0.03);
+                gain.gain.linearRampToValueAtTime(0, now + i * 0.03 + 0.12);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                
-                osc.start(now + i * 0.04);
-                osc.stop(now + i * 0.04 + 0.15);
+                osc.start(now + i * 0.03);
+                osc.stop(now + i * 0.03 + 0.12);
             });
         }
 
-        // Легкий футуристичный ASMR-колокольчик при успехе
         function playSuccessSound() {
             initAudio();
             if (!audioCtx) return;
-
             let now = audioCtx.currentTime;
-            let freqs = [523.25, 659.25, 987.77]; // Красивый мажорный септаккорд
-            
+            let freqs = [523.25, 659.25, 987.77];
             freqs.forEach((freq, index) => {
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
-                
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now + (index * 0.05));
-                
-                gain.gain.setValueAtTime(0.05, now + (index * 0.05));
-                gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.05) + 0.4);
-                
+                osc.frequency.setValueAtTime(freq, now + (index * 0.04));
+                gain.gain.setValueAtTime(0.04, now + (index * 0.04));
+                gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.04) + 0.35);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                
-                osc.start(now + (index * 0.05));
-                osc.stop(now + (index * 0.05) + 0.4);
+                osc.start(now + (index * 0.04));
+                osc.stop(now + (index * 0.04) + 0.35);
             });
         }
 
-        /* Логика интерактивного терминала */
+        /* Интерактивный терминал */
         function runCommand(cmd) {
             playClickSound();
             const termBody = document.getElementById('termBody');
             let output = '';
-
             if (cmd === 'clear') {
-                termBody.innerHTML = '<div>&gt; Терминал очищен. Жду указаний...</div>';
+                termBody.innerHTML = '<div>&gt; Логи очищены. Ядро готово к работе.</div>';
                 return;
             }
-
             switch(cmd) {
                 case 'help':
-                    output = '<div>&gt; Доступные модули:<br>./status - проверить состояние серверов<br>./secret - запустить скрытый протокол ядра<br>clear - очистить логи</div>';
+                    output = '<div>&gt; Доступные протоколы:<br>./status - сканирование состояния узлов сети<br>./secret - запуск защищенного режима<br>clear - очистка рабочей среды терминала</div>';
                     break;
                 case 'status':
-                    output = '<div>&gt; Статус систем:<br>- Main Core: ONLINE<br>- P2P Mesh Network: ACTIVE<br>- Per4ik Shop DB: SYNCED<br>- Текущий пинг: 12ms</div>';
+                    output = '<div>&gt; Статус системной сетки:<br>- Core System: OPERATIONAL<br>- P2P Relay Mesh: ACTIVE (2 Nodes Node)<br>- DNS Proxies: ONLINE<br>- Задержка ядра: 9ms</div>';
                     break;
                 case 'secret':
-                    output = '<div>&gt; <span style="color: #ef4444;">ВНИМАНИЕ!</span> Протокол активирован. "Зелёный перец" следит за чистотой твоего исходного кода. Не используй глобальные переменные вхолостую!</div>';
+                    output = '<div>&gt; <span style="color: #ef4444;">ВНИМАНИЕ:</span> Запущен зашифрованный протокол GreenPer. Весь код компилируется без утечек памяти. Все пиры стабильны.</div>';
                     break;
                 default:
-                    output = '<div>&gt; Ошибка: неизвестная команда.</div>';
+                    output = '<div>&gt; Системная ошибка: команда не найдена.</div>';
             }
-
-            termBody.innerHTML += `<div style="margin-top:8px; color:#ffffff;">$ ./${cmd}</div>${output}`;
+            termBody.innerHTML += `<div style="margin-top:10px; color:#ffffff;">$ ./${cmd}</div>${output}`;
             termBody.scrollTop = termBody.scrollHeight;
         }
 
-        /* Кастомный курсор (только для десктопов) */
+        /* Умный курсор для мыши */
         const cursor = document.getElementById('custom-cursor');
         if (matchMedia('(pointer: fine)').matches) {
             cursor.style.display = 'block';
@@ -1238,14 +1262,14 @@
                 cursor.style.top = e.clientY + 'px';
             });
             document.addEventListener('mousedown', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.6)';
             });
             document.addEventListener('mouseup', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1)';
             });
         }
 
-        /* Кнопка Наверх */
+        /* Кнопка скролла наверх */
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
@@ -1259,18 +1283,15 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* ОТПРАВКА ИДЕИ В P2P СЕТЬ (Доступно всем администраторам онлайн) */
+        /* Отправка данных в P2P шину */
         function submitIdea(e) {
             e.preventDefault();
             const name = document.getElementById('username').value;
             const text = document.getElementById('ideatext').value;
             const timestamp = Date.now();
             const dateStr = new Date().toLocaleString('ru-RU');
-
-            // Генерируем уникальный p2p ID ключа
             const ideaId = 'idea_' + timestamp + '_' + Math.random().toString(36).substr(2, 9);
 
-            // Пушим напрямую в p2p Mesh-сеть
             p2pIdeas.get(ideaId).put({
                 name: name,
                 text: text,
@@ -1280,11 +1301,10 @@
             });
 
             playSuccessSound();
-            alert('Синхронизация успешна! Твоя идея улетела в P2P-сеть для всех админов GreenPer Team.');
+            alert('Синхронизация успешна! Идея распределена по P2P-сети администраторов GreenPer.');
             document.getElementById('ideaForm').reset();
         }
 
-        /* Вход в p2p админку */
         function toggleAuthPanel() {
             playClickSound();
             const authPanel = document.getElementById('authPanel');
@@ -1294,7 +1314,6 @@
         function loginAdmin() {
             playClickSound();
             const pass = document.getElementById('adminPass').value;
-            // Твой секретный ключ входа
             if (pass === 'greenper2026') {
                 playSuccessSound();
                 document.getElementById('authPanel').style.display = 'none';
@@ -1303,7 +1322,7 @@
                 document.getElementById('p2pStatus').style.color = '#00ff66';
                 renderIdeas();
             } else {
-                alert('Доступ заблокирован. Неверный хэш-ключ администратора.');
+                alert('Ошибка доступа. Токен авторизации отклонен децентрализованной сетью.');
             }
         }
 
@@ -1313,31 +1332,25 @@
             document.getElementById('adminPass').value = '';
         }
 
-        /* Рендеринг распределенных данных */
         function renderIdeas() {
             const container = document.getElementById('ideasLogsList');
-            
-            // Сортируем полученные из p2p сети идеи по времени добавления
             const sortedIdeas = [...localIdeasCache].sort((a, b) => b.timestamp - a.timestamp);
-
             if(sortedIdeas.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-muted); padding: 10px 0;">P2P-сеть пуста. Ожидание предложений от пользователей...</p>';
+                container.innerHTML = '<p style="color:var(--text-muted); padding: 15px 0;">Распределенное хранилище пусто. Ожидание входящих пиров...</p>';
                 return;
             }
-
             container.innerHTML = sortedIdeas.map((idea) => `
                 <div class="idea-box">
                     <button class="delete-idea-btn" onclick="deleteP2PIdea('${idea.id}')"><i class="fa-solid fa-trash"></i></button>
-                    <strong>${escapeHtml(idea.name)}</strong> <span class="date">${idea.date} (P2P Node)</span>
+                    <strong>${escapeHtml(idea.name)}</strong> <span class="date">${idea.date} (Peer Node)</span>
                     <p>${escapeHtml(idea.text)}</p>
                 </div>
             `).join('');
         }
 
-        /* Удаление из P2P (синхронизируется у всех админов разом) */
         function deleteP2PIdea(id) {
             playClickSound();
-            if(confirm("Удалить идею из глобальной P2P-сети для всех админов?")) {
+            if(confirm("Удалить предложение из распределенной сети безвозвратно?")) {
                 p2pIdeas.get(id).put({ deleted: true });
             }
         }
