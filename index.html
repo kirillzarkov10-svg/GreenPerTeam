@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenPer Team | Официальный сайт</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Подключаем децентрализованную P2P базу данных GunDB -->
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <style>
         /* Общие стили и обнуление */
         * {
@@ -727,6 +729,16 @@
             align-items: center;
         }
 
+        .p2p-status-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(0, 255, 102, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
         .idea-box {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.05);
@@ -800,7 +812,7 @@
             box-shadow: 0 0 15px var(--accent-color);
         }
 
-        /* НОВЫЙ ИСПРАВЛЕННЫЙ ФУТЕР */
+        /* ФУТЕР */
         footer {
             text-align: center;
             padding: 50px 20px;
@@ -1032,20 +1044,24 @@
             </form>
         </div>
 
-        <p style="margin-top: 30px; font-size: 0.85rem; color: var(--accent-color); cursor: pointer; text-decoration: underline;" onclick="toggleAuthPanel()">[ Управление панелью ]</p>
+        <p style="margin-top: 30px; font-size: 0.85rem; color: var(--accent-color); cursor: pointer; text-decoration: underline;" onclick="toggleAuthPanel()">[ Управление P2P панелью ]</p>
 
         <div class="auth-panel" id="authPanel">
             <div class="form-group">
                 <label for="adminPass">Пароль Администратора</label>
-                <input type="password" id="adminPass" placeholder="Введите пароль для просмотра идей...">
+                <input type="password" id="adminPass" placeholder="Введите пароль для p2p-синхронизации...">
             </div>
-            <button onclick="loginAdmin()">Войти в систему</button>
+            <button onclick="loginAdmin()">Войти в P2P сеть</button>
         </div>
 
         <div class="admin-panel" id="adminPanel">
-            <h3>Панель управления идеями <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.9rem;">[ Выйти ]</button></h3>
+            <h3>
+                P2P Панель Управления Идеями
+                <span class="p2p-status-badge" id="p2pStatus">Сеть: Подключение...</span>
+                <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.9rem; margin-left:10px;">[ Выйти ]</button>
+            </h3>
             <div id="ideasLogsList">
-                <!-- Сюда динамически загружаются идеи -->
+                <!-- Сюда динамически загружаются распределенные p2p идеи -->
             </div>
         </div>
     </section>
@@ -1054,7 +1070,6 @@
         <i class="fa-solid fa-arrow-up"></i>
     </div>
 
-    <!-- ОБНОВЛЕННЫЙ ТРЕБУЕМЫЙ ФУТЕР -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -1064,13 +1079,45 @@
                 Вступайте в наш <a href="https://t.me/GreenPerTeam" class="tg-link" target="_blank" onclick="playSocialSound()">Telegram</a> и <a href="https://discord.gg/YOUR_INVITE_LINK" class="ds-link" target="_blank" onclick="playSocialSound()">Discord</a> канал!
             </div>
             <div class="footer-copyright">
-                Powered by Core Engine UI. Stay Optimized.
+                Powered by Core P2P Engine UI. All Peers Synced.
             </div>
         </div>
     </footer>
 
     <script>
-        /* ЗВУКОВОЙ ДВИЖОК (Web Audio API) — генерирует звуки без внешних файлов */
+        /* ИНИЦИАЛИЗАЦИЯ ДЕЦЕНТРАЛИЗОВАННОЙ P2P СЕТИ (GunDB) */
+        // Используем публичные распределенные реле-узлы для обмена пирами прямо в браузере
+        const gun = Gun([
+            'https://gun-manhattan.herokuapp.com/gun',
+            'https://gundb.herokuapp.com/gun'
+        ]);
+        // Создаем распределенное p2p пространство для идей GreenPer Team
+        const p2pIdeas = gun.get('greenper_team_global_p2p_ideas_2026');
+
+        let localIdeasCache = [];
+
+        // Слушаем изменения в p2p сети в реальном времени
+        p2pIdeas.map().on(function(data, id) {
+            if (!data) return;
+            // Исключаем дубли
+            const index = localIdeasCache.findIndex(item => item.id === id);
+            if (index > -1) {
+                if (data.deleted) {
+                    localIdeasCache.splice(index, 1);
+                } else {
+                    localIdeasCache[index] = { id, ...data };
+                }
+            } else if (!data.deleted) {
+                localIdeasCache.push({ id, ...data });
+            }
+            
+            // Если админка открыта, перерисовываем
+            if(document.getElementById('adminPanel').style.display === 'block') {
+                renderIdeas();
+            }
+        });
+
+        /* ПРИЯТНЫЙ ЗВУКОВОЙ ДВИЖОК (Глубокие, мягкие UI клики без писка) */
         let audioCtx = null;
 
         function initAudio() {
@@ -1079,6 +1126,7 @@
             }
         }
 
+        // Мягкий, глубокий клик (как в премиальной технике или дорогих играх)
         function playClickSound() {
             initAudio();
             if (!audioCtx) return;
@@ -1087,60 +1135,69 @@
             let gain = audioCtx.createGain();
             
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.08);
+            // Низкая, бархатная частота вместо противного писка
+            osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
             
-            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
             
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.08);
+            osc.stop(audioCtx.currentTime + 0.1);
         }
 
+        // Приятный двойной скользящий аккорд для соцсетей
         function playSocialSound() {
             initAudio();
             if (!audioCtx) return;
 
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.05);
-            
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.15);
-            
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.15);
+            let now = audioCtx.currentTime;
+            [220, 330].forEach((freq, i) => {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now + i * 0.04);
+                osc.frequency.exponentialRampToValueAtTime(freq / 2, now + i * 0.04 + 0.15);
+                
+                gain.gain.setValueAtTime(0.1, now + i * 0.04);
+                gain.gain.linearRampToValueAtTime(0, now + i * 0.04 + 0.15);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(now + i * 0.04);
+                osc.stop(now + i * 0.04 + 0.15);
+            });
         }
 
+        // Легкий футуристичный ASMR-колокольчик при успехе
         function playSuccessSound() {
             initAudio();
             if (!audioCtx) return;
 
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
+            let now = audioCtx.currentTime;
+            let freqs = [523.25, 659.25, 987.77]; // Красивый мажорный септаккорд
             
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // До
-            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // Ми
-            osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // Соль
-            
-            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
-            
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.3);
+            freqs.forEach((freq, index) => {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now + (index * 0.05));
+                
+                gain.gain.setValueAtTime(0.05, now + (index * 0.05));
+                gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.05) + 0.4);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(now + (index * 0.05));
+                osc.stop(now + (index * 0.05) + 0.4);
+            });
         }
 
         /* Логика интерактивного терминала */
@@ -1159,7 +1216,7 @@
                     output = '<div>&gt; Доступные модули:<br>./status - проверить состояние серверов<br>./secret - запустить скрытый протокол ядра<br>clear - очистить логи</div>';
                     break;
                 case 'status':
-                    output = '<div>&gt; Статус систем:<br>- Main Core: ONLINE<br>- Proxy DNS Layer: 14 nodes OPERATIONAL<br>- Per4ik Shop DB: SYNCED<br>- Текущий пинг: 14ms</div>';
+                    output = '<div>&gt; Статус систем:<br>- Main Core: ONLINE<br>- P2P Mesh Network: ACTIVE<br>- Per4ik Shop DB: SYNCED<br>- Текущий пинг: 12ms</div>';
                     break;
                 case 'secret':
                     output = '<div>&gt; <span style="color: #ef4444;">ВНИМАНИЕ!</span> Протокол активирован. "Зелёный перец" следит за чистотой твоего исходного кода. Не используй глобальные переменные вхолостую!</div>';
@@ -1202,28 +1259,32 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* Работа с идеями пользователей через LocalStorage */
+        /* ОТПРАВКА ИДЕИ В P2P СЕТЬ (Доступно всем администраторам онлайн) */
         function submitIdea(e) {
             e.preventDefault();
             const name = document.getElementById('username').value;
             const text = document.getElementById('ideatext').value;
+            const timestamp = Date.now();
             const dateStr = new Date().toLocaleString('ru-RU');
 
-            const newIdea = { name, text, date: dateStr };
-            let ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
-            ideas.push(newIdea);
-            localStorage.setItem('gp_ideas', JSON.stringify(ideas));
+            // Генерируем уникальный p2p ID ключа
+            const ideaId = 'idea_' + timestamp + '_' + Math.random().toString(36).substr(2, 9);
+
+            // Пушим напрямую в p2p Mesh-сеть
+            p2pIdeas.get(ideaId).put({
+                name: name,
+                text: text,
+                date: dateStr,
+                timestamp: timestamp,
+                deleted: false
+            });
 
             playSuccessSound();
-            alert('Спасибо! Твоя идея успешно отправлена на сервера GreenPer Team.');
+            alert('Синхронизация успешна! Твоя идея улетела в P2P-сеть для всех админов GreenPer Team.');
             document.getElementById('ideaForm').reset();
-            
-            if(document.getElementById('adminPanel').style.display === 'block') {
-                renderIdeas();
-            }
         }
 
-        /* Админ-панель */
+        /* Вход в p2p админку */
         function toggleAuthPanel() {
             playClickSound();
             const authPanel = document.getElementById('authPanel');
@@ -1233,10 +1294,13 @@
         function loginAdmin() {
             playClickSound();
             const pass = document.getElementById('adminPass').value;
+            // Твой секретный ключ входа
             if (pass === 'greenper2026') {
                 playSuccessSound();
                 document.getElementById('authPanel').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'block';
+                document.getElementById('p2pStatus').innerText = 'Сеть: P2P СИНХРОНИЗИРОВАНО';
+                document.getElementById('p2pStatus').style.color = '#00ff66';
                 renderIdeas();
             } else {
                 alert('Доступ заблокирован. Неверный хэш-ключ администратора.');
@@ -1249,33 +1313,37 @@
             document.getElementById('adminPass').value = '';
         }
 
+        /* Рендеринг распределенных данных */
         function renderIdeas() {
             const container = document.getElementById('ideasLogsList');
-            const ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
             
-            if(ideas.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-muted);">Идей от пользователей пока не поступало.</p>';
+            // Сортируем полученные из p2p сети идеи по времени добавления
+            const sortedIdeas = [...localIdeasCache].sort((a, b) => b.timestamp - a.timestamp);
+
+            if(sortedIdeas.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted); padding: 10px 0;">P2P-сеть пуста. Ожидание предложений от пользователей...</p>';
                 return;
             }
 
-            container.innerHTML = ideas.map((idea, index) => `
+            container.innerHTML = sortedIdeas.map((idea) => `
                 <div class="idea-box">
-                    <button class="delete-idea-btn" onclick="deleteIdea(${index})"><i class="fa-solid fa-trash"></i></button>
-                    <strong>${escapeHtml(idea.name)}</strong> <span class="date">${idea.date}</span>
+                    <button class="delete-idea-btn" onclick="deleteP2PIdea('${idea.id}')"><i class="fa-solid fa-trash"></i></button>
+                    <strong>${escapeHtml(idea.name)}</strong> <span class="date">${idea.date} (P2P Node)</span>
                     <p>${escapeHtml(idea.text)}</p>
                 </div>
             `).join('');
         }
 
-        function deleteIdea(index) {
+        /* Удаление из P2P (синхронизируется у всех админов разом) */
+        function deleteP2PIdea(id) {
             playClickSound();
-            let ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
-            ideas.splice(index, 1);
-            localStorage.setItem('gp_ideas', JSON.stringify(ideas));
-            renderIdeas();
+            if(confirm("Удалить идею из глобальной P2P-сети для всех админов?")) {
+                p2pIdeas.get(id).put({ deleted: true });
+            }
         }
 
         function escapeHtml(text) {
+            if (!text) return '';
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
