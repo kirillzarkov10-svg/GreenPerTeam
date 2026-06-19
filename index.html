@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenPer Team | Официальный сайт</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Децентрализованная P2P база данных GunDB -->
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <style>
         /* Общие стили и сброс */
@@ -71,7 +70,7 @@
             z-index: 10000;
             box-shadow: 0 0 12px var(--accent-color), 0 0 24px var(--accent-color);
             transform: translate(-50%, -50%);
-            transition: transform 0.08s ease-out, width 0.2s, height 0.2s;
+            transition: transform 0.04s ease-out, width 0.2s, height 0.2s;
             display: none;
         }
 
@@ -775,6 +774,10 @@
             letter-spacing: 0.5px;
         }
 
+        .ideas-list {
+            margin-top: 30px;
+        }
+
         .idea-box {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.04);
@@ -1014,114 +1017,81 @@
                     <span style="display:none; color: var(--text-muted); font-size: 0.8rem;">[ Skelet Ава ]</span>
                 </div>
                 <h3>Skelet</h3>
-                <div class="role">Идеи / Креатив</div>
-                <p>Разработка уникальных векторов проектов, проектирование фич и генерация нестандартных решений для софта команды.</p>
+                <div class="role">Фронтенд / UI Дизайн</div>
+                <p>Проектирование визуального стиля экосистемы, адаптивная верстка веб-интерфейсов и создание отзывчивого UX.</p>
                 <div class="btn-group">
-                    <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://github.com/" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://t.me/GreenPerTeam" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://github.com" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="projects-section" id="projects">
-        <h2 class="section-title">Актуальные <span>Проекты</span></h2>
-
-        <div class="project-wide type-glitch">
-            <div class="project-info">
-                <div class="badge-status">Garry's Mod Модификация</div>
-                <h3>The Glitch Loop: Reality Collapse</h3>
-                <p>Инновационный аддон, симулирующий тотальный сбой игрового пространства внутри движка Source. Пространственные петли, кастомные визуальные аномалии рендеринга и атмосферные искажения.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank" onclick="playSocialSound()">Смотреть в Steam <i class="fa-brands fa-steam"></i></a>
-            </div>
-            <div class="project-image">
-                <img src="glitch_loop.jpg" alt="The Glitch Loop" onerror="this.style.display='none';">
-            </div>
-        </div>
-
+        <h2 class="section-title">Наши <span>Разработки</span></h2>
+        
         <div class="project-wide type-lostmedia">
             <div class="project-info">
-                <div class="badge-status">Восстановленный Lost Media релиз</div>
-                <h3>Steam Addon Puppeteer_Legacy</h3>
-                <p>Успешный поиск, восстановление и адаптация утраченной модификации 2015 года. Позволяет осуществлять перехват управления сущностями на глубинном уровне серверной логики.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3746548767" class="btn-action" target="_blank" onclick="playSocialSound()">Смотреть в Steam <i class="fa-brands fa-steam"></i></a>
+                <div class="badge-status">Legacy Project</div>
+                <h3>Windows 12 Dog Edition</h3>
+                <p>Кастомная модификация симулятора операционной системы с переработанной UI-логикой, набором встроенных пасхалок и собственным лаунчером инсталляции.</p>
             </div>
             <div class="project-image">
-                <img src="puppeteer.jpg" alt="Puppeteer" onerror="this.style.display='none';">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=cover" alt="Windows 12 Dog Edition">
             </div>
         </div>
 
         <div class="project-wide type-shop">
             <div class="project-info">
-                <div class="badge-status">Цифровой Маркетплейс</div>
-                <h3>Per4ik Shop</h3>
-                <p>Специализированная площадка цифровых услуг. Доступные транзакции криптовалют, быстрая смена регионов платформ (Steam, Epic, PlayStation) и отказоустойчивые выделенные прокси.</p>
-                <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank" onclick="playSocialSound()">Перейти в магазин <i class="fa-solid fa-cart-shopping"></i></a>
+                <div class="badge-status">Active Production</div>
+                <h3>GreenPer Launcher</h3>
+                <p>Единый лаунчер-хаб для приложений команды. Позволяет централизованно запускать приватный софт, обновлять модули оптимизации системы и синхронизировать игровые данные.</p>
+                <div>
+                    <a href="#ideas" class="btn-action">Предложить фичу <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
             </div>
             <div class="project-image">
-                <img src="shop.jpg" alt="Shop" onerror="this.style.display='none';">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=cover" alt="GreenPer Launcher">
             </div>
         </div>
     </section>
 
-    <section class="roadmap-section" id="roadmap">
-        <h2 class="section-title">Линия <span>Развития</span></h2>
+    <section class="roadmap-section">
+        <h2 class="section-title">План <span>Развития</span></h2>
         <div class="roadmap-container">
             <div class="roadmap-item active">
-                <div class="roadmap-date">МАРШРУТ: В АКТИВНОЙ РАЗРАБОТКЕ</div>
-                <h4>GreenPer Launcher</h4>
-                <p>Проектирование и сборка десктопной оболочки на C# (WPF) для единого хаба, автоматического обновления и запуска всего нашего приватного софта.</p>
+                <div class="roadmap-date">Q1-Q2 2026</div>
+                <h4>Релиз GreenPer Launcher & Music</h4>
+                <p>Запуск основного лаунчера утилит и медиа-стримингового клиента на базе C#/WPF с полноценной интеграцией P2P-синхронизации списков.</p>
             </div>
-            <div class="roadmap-item active">
-                <div class="roadmap-date">МАРШРУТ: ТЕСТИРОВАНИЕ И МОДИФИКАЦИЯ</div>
-                <h4>The Glitch Loop & Puppeteer_Legacy</h4>
-                <p>Глубокая оптимизация Lua-скриптов и игровых хуков под новые апдейты движка Source в Steam. Устранение вылетов и доработка рендеринга.</p>
-            </div>
-            <div class="roadmap-item active">
-                <div class="roadmap-date">МАРШРУТ: РАСШИРЕНИЕ ФУНКЦИОНАЛА</div>
-                <h4>Per4ik Shop</h4>
-                <p>Интеграция новых платежных шлюзов, добавление автоматической выдачи товара и оптимизация структуры веб-маркетплейса.</p>
+            <div class="roadmap-item">
+                <div class="roadmap-date">Q3 2026</div>
+                <h4>Мобильный блок "Antimax"</h4>
+                <p>Разработка изолирующего Android-модуля для точечной блокировки входящих пакетов сторонних мессенджеров.</p>
             </div>
         </div>
     </section>
 
     <section class="ideas-section" id="ideas">
-        <h2 class="section-title">Предложить <span>Задумку</span></h2>
-        
+        <h2 class="section-title">Сбор <span>Идей</span></h2>
         <div class="ideas-container">
-            <form id="ideaForm" onsubmit="submitIdea(event)">
-                <div class="form-group">
-                    <label for="username">Идентификатор / Telegram ник</label>
-                    <input type="text" id="username" placeholder="Например, @quach_dev" required>
-                </div>
-                <div class="form-group">
-                    <label for="ideatext">Суть архитектуры софта или идеи</label>
-                    <textarea id="ideatext" rows="5" placeholder="Опиши стек, логику или функционал, который необходимо реализовать..." required></textarea>
-                </div>
-                <button type="submit">Синхронизировать идею в сеть</button>
-            </form>
-        </div>
-
-        <p style="margin-top: 35px; font-size: 0.8rem; color: var(--accent-color); cursor: pointer; text-decoration: none; font-weight: 700; letter-spacing: 0.5px;" onclick="toggleAuthPanel()">
-            [ ОБОЛОЧКА АДМИНИСТРАТОРА ]
-        </p>
-
-        <div class="auth-panel" id="authPanel">
             <div class="form-group">
-                <label for="adminPass">Ключ дешифрования сети</label>
-                <input type="password" id="adminPass" placeholder="Введите пароль доступа...">
+                <label for="username">Ваш Никнейм / Контакт</label>
+                <input type="text" id="username" placeholder="Например, Per4ik или @tg_username">
             </div>
-            <button onclick="loginAdmin()">Инициализировать P2P</button>
-        </div>
+            <div class="form-group">
+                <label for="ideaText">Описание Идеи / Фичи</label>
+                <textarea id="ideaText" rows="5" placeholder="Опишите механику или функционал, который вы хотите видеть..."></textarea>
+            </div>
+            <button onclick="submitIdea()">Отправить в P2P сеть</button>
 
-        <div class="admin-panel" id="adminPanel">
-            <h3>
-                Распределенная P2P панель управления
-                <span class="p2p-status-badge" id="p2pStatus">Поиск пиров...</span>
-                <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:0.85rem; font-weight:700;">[ ОТКЛЮЧИТЬСЯ ]</button>
-            </h3>
-            <div id="ideasLogsList">
-                <!-- Динамические данные распределенной сети GunDB -->
+            <div class="auth-panel" id="authPanel">
+                <button onclick="tryAdminAuth()">Войти как Админ (P2P узел)</button>
+            </div>
+
+            <div class="admin-panel" id="adminPanel">
+                <h3>Управление Записями <span class="p2p-status-badge">GunDB Node: Active</span></h3>
+                <div class="ideas-list" id="ideasList"></div>
             </div>
         </div>
     </section>
@@ -1133,236 +1103,181 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                Платформа: <span>GreenPer Team Core</span> — Защищено сквозным распределенным шифрованием &copy; 2026
+                Разработано <span>GreenPer Team Devs</span> • Локальный узел P2P
             </div>
             <div class="footer-call">
-                Официальные хабы: <a href="https://t.me/GreenPerTeam" class="tg-link" target="_blank" onclick="playSocialSound()">Telegram channel</a> и <a href="https://discord.gg/YOUR_INVITE_LINK" class="ds-link" target="_blank" onclick="playSocialSound()">Discord server</a>
+                Связаться: <a href="https://t.me/GreenPerTeam" class="tg-link" target="_blank">Telegram</a> | <a href="https://discord.gg/RGuZ34TE8G" class="ds-link" target="_blank">Discord</a>
             </div>
             <div class="footer-copyright">
-                P2P Network Engine Status: Mesh Synced. All admin nodes linked.
+                © 2026 GREENPER TEAM. ALL RIGHTS RESERVED. RUNNING ON GUN.JS
             </div>
         </div>
     </footer>
 
     <script>
-        /* ДЕЦЕНТРАЛИЗОВАННАЯ P2P СЕТЬ (GunDB) */
-        const gun = Gun([
-            'https://gun-manhattan.herokuapp.com/gun',
-            'https://gundb.herokuapp.com/gun'
-        ]);
-        const p2pIdeas = gun.get('greenper_team_global_p2p_ideas_2026');
-        let localIdeasCache = [];
+        // Инициализация P2P базы данных GunDB
+        // Используем публичные пиры (в продакшене можно заменить на свой собственный локальный relay)
+        const gun = Gun(['https://gun-manhattan.herokuapp.com/gun']);
+        const ideasNode = gun.get('greenper_team_web_ideas_v1');
 
-        p2pIdeas.map().on(function(data, id) {
-            if (!data) return;
-            const index = localIdeasCache.findIndex(item => item.id === id);
-            if (index > -1) {
-                if (data.deleted) {
-                    localIdeasCache.splice(index, 1);
-                } else {
-                    localIdeasCache[index] = { id, ...data };
-                }
-            } else if (!data.deleted) {
-                localIdeasCache.push({ id, ...data });
-            }
-            if(document.getElementById('adminPanel').style.display === 'block') {
-                renderIdeas();
-            }
-        });
+        // Звуковой движок Web Audio API (генерация футуристичных звуков без внешних файлов)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-        /* ПРЕМИАЛЬНЫЙ АУДИО-ДВИЖОК БЕЗ ПИСКА */
-        let audioCtx = null;
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
+        function playSynthSound(freq, type, duration, vol) {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(vol, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) { console.log("Audio play blocked"); }
         }
 
-        function playClickSound() {
-            initAudio();
-            if (!audioCtx) return;
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(130, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.08);
-            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.08);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.08);
+        function playClickSound() { playSynthSound(600, 'sine', 0.1, 0.1); }
+        function playSocialSound() { playSynthSound(800, 'triangle', 0.15, 0.08); }
+        function playSuccessSound() { 
+            playSynthSound(523.25, 'sine', 0.1, 0.15);
+            setTimeout(() => playSynthSound(659.25, 'sine', 0.2, 0.15), 80);
         }
 
-        function playSocialSound() {
-            initAudio();
-            if (!audioCtx) return;
-            let now = audioCtx.currentTime;
-            [200, 310].forEach((freq, i) => {
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now + i * 0.03);
-                osc.frequency.exponentialRampToValueAtTime(freq / 2, now + i * 0.03 + 0.12);
-                gain.gain.setValueAtTime(0.08, now + i * 0.03);
-                gain.gain.linearRampToValueAtTime(0, now + i * 0.03 + 0.12);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now + i * 0.03);
-                osc.stop(now + i * 0.03 + 0.12);
-            });
-        }
-
-        function playSuccessSound() {
-            initAudio();
-            if (!audioCtx) return;
-            let now = audioCtx.currentTime;
-            let freqs = [523.25, 659.25, 987.77];
-            freqs.forEach((freq, index) => {
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now + (index * 0.04));
-                gain.gain.setValueAtTime(0.04, now + (index * 0.04));
-                gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.04) + 0.35);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now + (index * 0.04));
-                osc.stop(now + (index * 0.04) + 0.35);
-            });
-        }
-
-        /* Интерактивный терминал */
-        function runCommand(cmd) {
-            playClickSound();
-            const termBody = document.getElementById('termBody');
-            let output = '';
-            if (cmd === 'clear') {
-                termBody.innerHTML = '<div>&gt; Логи очищены. Ядро готово к работе.</div>';
-                return;
-            }
-            switch(cmd) {
-                case 'help':
-                    output = '<div>&gt; Доступные протоколы:<br>./status - сканирование состояния узлов сети<br>./secret - запуск защищенного режима<br>clear - очистка рабочей среды терминала</div>';
-                    break;
-                case 'status':
-                    output = '<div>&gt; Статус системной сетки:<br>- Core System: OPERATIONAL<br>- P2P Relay Mesh: ACTIVE (2 Nodes Node)<br>- DNS Proxies: ONLINE<br>- Задержка ядра: 9ms</div>';
-                    break;
-                case 'secret':
-                    output = '<div>&gt; <span style="color: #ef4444;">ВНИМАНИЕ:</span> Запущен зашифрованный протокол GreenPer. Весь код компилируется без утечек памяти. Все пиры стабильны.</div>';
-                    break;
-                default:
-                    output = '<div>&gt; Системная ошибка: команда не найдена.</div>';
-            }
-            termBody.innerHTML += `<div style="margin-top:10px; color:#ffffff;">$ ./${cmd}</div>${output}`;
-            termBody.scrollTop = termBody.scrollHeight;
-        }
-
-        /* Умный курсор для мыши */
+        // Кастомный умный курсор
         const cursor = document.getElementById('custom-cursor');
-        if (matchMedia('(pointer: fine)').matches) {
+        if (window.matchMedia("(pointer: fine)").matches) {
             cursor.style.display = 'block';
             document.addEventListener('mousemove', (e) => {
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });
             document.addEventListener('mousedown', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.6)';
+                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursor.style.background = '#10b981';
             });
             document.addEventListener('mouseup', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'var(--accent-color)';
             });
         }
 
-        /* Кнопка скролла наверх */
+        // Логика Кибер-Терминала
+        const termBody = document.getElementById('termBody');
+        function runCommand(cmd) {
+            playClickSound();
+            let out = "";
+            if (cmd === 'clear') {
+                termBody.innerHTML = "";
+                return;
+            } else if (cmd === 'help') {
+                out = "<div>&gt; Доступные модули:<br>./status - Проверка состояния P2P линков<br>./secret - Информация разработчиков<br>clear - Очистить консоль</div>";
+            } else if (cmd === 'status') {
+                out = "<div>&gt; <span style='color:var(--accent-color)'>[ONLINE]</span> Nodes connected: 2. Core packet delivery status: 100%. Protocol: decentralized mesh layout.</div>";
+            } else if (cmd === 'secret') {
+                out = "<div>&gt; <span style='color:#ef4444'>[ENCRYPTED]</span> Dev-hash: Quach_Kirill // Per4ik_Architect. Project phase active: 2026. Target: Windows 12 Dog, GreenPer Launcher Hub, Antimax block engine.</div>";
+            }
+            termBody.innerHTML += out;
+            termBody.scrollTop = termBody.scrollHeight;
+        }
+
+        // Логика отправки идеи в GunDB
+        function submitIdea() {
+            const user = document.getElementById('username').value.trim();
+            const text = document.getElementById('ideaText').value.trim();
+
+            if (!user || !text) {
+                alert("Пожалуйста, заполните оба поля.");
+                return;
+            }
+
+            const ideaId = 'idea_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            const dateStr = new Date().toLocaleString('ru-RU');
+
+            ideasNode.get(ideaId).put({
+                id: ideaId,
+                username: user,
+                content: text,
+                timestamp: dateStr
+            });
+
+            playSuccessSound();
+            alert("Идея успешно отправлена в децентрализованную сеть GunDB!");
+            document.getElementById('username').value = "";
+            document.getElementById('ideaText').value = "";
+        }
+
+        // Секретный вход в панель администратора по кодовому слову в поле "Ваш Никнейм"
+        // Напишите 'admin' или 'greenper_root' в поле ввода имени, чтобы увидеть админку
+        document.getElementById('username').addEventListener('input', function(e) {
+            const val = e.target.value.trim().toLowerCase();
+            if (val === 'admin' || val === 'greenper_root' || val === 'quach' || val === 'per4ik') {
+                document.getElementById('authPanel').style.display = 'block';
+            } else {
+                document.getElementById('authPanel').style.display = 'none';
+            }
+        });
+
+        function tryAdminAuth() {
+            playSuccessSound();
+            document.getElementById('authPanel').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadIdeasRealtime();
+        }
+
+        // Синхронизация и отображение идей в админ-панели в реальном времени
+        function loadIdeasRealtime() {
+            const listEl = document.getElementById('ideasList');
+            listEl.innerHTML = "";
+            
+            ideasNode.map().on(function(data, id) {
+                if (!data) {
+                    const existing = document.getElementById(id);
+                    if (existing) existing.remove();
+                    return;
+                }
+                
+                let box = document.getElementById(data.id);
+                if (!box) {
+                    box = document.createElement('div');
+                    box.className = 'idea-box';
+                    box.id = data.id;
+                    listEl.prepend(box);
+                }
+                
+                box.innerHTML = `
+                    <button class="delete-idea-btn" onclick="deleteIdea('${data.id}')"><i class="fa-solid fa-trash"></i></button>
+                    <strong>${escapeHtml(data.username)}</strong>
+                    <span class="date">${data.timestamp || ''}</span>
+                    <p>${escapeHtml(data.content)}</p>
+                `;
+            });
+        }
+
+        function deleteIdea(id) {
+            playSynthSound(300, 'sawtooth', 0.2, 0.1);
+            ideasNode.get(id).put(null); // В GunDB удаление происходит через запись null
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        // Умная кнопка скролла наверх
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
+            if (window.scrollY > 500) {
                 scrollTopBtn.classList.add('visible');
             } else {
                 scrollTopBtn.classList.remove('visible');
             }
         });
+
         function scrollToTop() {
             playClickSound();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        /* Отправка данных в P2P шину */
-        function submitIdea(e) {
-            e.preventDefault();
-            const name = document.getElementById('username').value;
-            const text = document.getElementById('ideatext').value;
-            const timestamp = Date.now();
-            const dateStr = new Date().toLocaleString('ru-RU');
-            const ideaId = 'idea_' + timestamp + '_' + Math.random().toString(36).substr(2, 9);
-
-            p2pIdeas.get(ideaId).put({
-                name: name,
-                text: text,
-                date: dateStr,
-                timestamp: timestamp,
-                deleted: false
-            });
-
-            playSuccessSound();
-            alert('Синхронизация успешна! Идея распределена по P2P-сети администраторов GreenPer.');
-            document.getElementById('ideaForm').reset();
-        }
-
-        function toggleAuthPanel() {
-            playClickSound();
-            const authPanel = document.getElementById('authPanel');
-            authPanel.style.display = authPanel.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function loginAdmin() {
-            playClickSound();
-            const pass = document.getElementById('adminPass').value;
-            if (pass === 'greenper2026') {
-                playSuccessSound();
-                document.getElementById('authPanel').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                document.getElementById('p2pStatus').innerText = 'Сеть: P2P СИНХРОНИЗИРОВАНО';
-                document.getElementById('p2pStatus').style.color = '#00ff66';
-                renderIdeas();
-            } else {
-                alert('Ошибка доступа. Токен авторизации отклонен децентрализованной сетью.');
-            }
-        }
-
-        function logoutAdmin() {
-            playClickSound();
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('adminPass').value = '';
-        }
-
-        function renderIdeas() {
-            const container = document.getElementById('ideasLogsList');
-            const sortedIdeas = [...localIdeasCache].sort((a, b) => b.timestamp - a.timestamp);
-            if(sortedIdeas.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-muted); padding: 15px 0;">Распределенное хранилище пусто. Ожидание входящих пиров...</p>';
-                return;
-            }
-            container.innerHTML = sortedIdeas.map((idea) => `
-                <div class="idea-box">
-                    <button class="delete-idea-btn" onclick="deleteP2PIdea('${idea.id}')"><i class="fa-solid fa-trash"></i></button>
-                    <strong>${escapeHtml(idea.name)}</strong> <span class="date">${idea.date} (Peer Node)</span>
-                    <p>${escapeHtml(idea.text)}</p>
-                </div>
-            `).join('');
-        }
-
-        function deleteP2PIdea(id) {
-            playClickSound();
-            if(confirm("Удалить предложение из распределенной сети безвозвратно?")) {
-                p2pIdeas.get(id).put({ deleted: true });
-            }
-        }
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
 </body>
