@@ -800,23 +800,49 @@
             box-shadow: 0 0 15px var(--accent-color);
         }
 
+        /* НОВЫЙ ИСПРАВЛЕННЫЙ ФУТЕР */
         footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 50px 20px;
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
             background: #020617;
         }
 
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s ease;
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        footer a:hover {
+        .footer-links {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links span {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .footer-call {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-call a {
             color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .footer-call a.tg-link:hover { color: var(--accent-color); }
+        .footer-call a.ds-link:hover { color: #5865F2; }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -827,13 +853,13 @@
     <header>
         <div class="logo">GreenPer Team</div>
         <nav>
-            <a href="#team">Команда</a>
-            <a href="#projects">Разработки</a>
-            <a href="#ideas">Идеи</a>
-            <a href="https://discord.gg/RGuZ34TE8G" class="nav-social-btn discord" target="_blank">
+            <a href="#team" onclick="playClickSound()">Команда</a>
+            <a href="#projects" onclick="playClickSound()">Разработки</a>
+            <a href="#ideas" onclick="playClickSound()">Идеи</a>
+            <a href="https://discord.gg/RGuZ34TE8G" class="nav-social-btn discord" target="_blank" onclick="playSocialSound()">
                 <i class="fa-brands fa-discord"></i> Discord
             </a>
-            <a href="https://t.me/GreenPerTeam" class="nav-social-btn" target="_blank">
+            <a href="https://t.me/GreenPerTeam" class="nav-social-btn" target="_blank" onclick="playSocialSound()">
                 <i class="fa-brands fa-telegram"></i> Канал
             </a>
         </nav>
@@ -898,8 +924,8 @@
                 <div class="role">Идеи / Описание</div>
                 <p>Отвечает за генерацию идей, концепты, составление подробных описаний и логику работы наших будущих и текущих проектов.</p>
                 <div class="btn-group">
-                    <a href="https://t.me/vobmy" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://github.com/per4ik148" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://t.me/vobmy" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://github.com/per4ik148" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
 
@@ -912,8 +938,8 @@
                 <div class="role">Разработчик кода</div>
                 <p>Занимается технической реализацией, написанием чистого кода, архитектурой приложений и оптимизацией всех утилит команды.</p>
                 <div class="btn-group">
-                    <a href="https://t.me/Quac23h" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://github.com/kirillzarkov10-svg" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://t.me/Quac23h" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://github.com/kirillzarkov10-svg" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
 
@@ -926,8 +952,8 @@
                 <div class="role">Идеи / Концепты</div>
                 <p>Генерирует уникальные концепты, продумывает фичи, логику работы софта и развивает креативные направления проектов.</p>
                 <div class="btn-group">
-                    <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://github.com/" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://github.com/" class="btn-social" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -936,13 +962,12 @@
     <section class="projects-section" id="projects">
         <h2 class="section-title">Наши <span>Проекты</span></h2>
 
-        <!-- ДОБАВЛЕННЫЙ АДДОН -->
         <div class="project-wide type-glitch">
             <div class="project-info">
                 <div class="badge-status">Garry's Mod аддон</div>
                 <h3>The Glitch Loop: Reality Collapse</h3>
                 <p>Уникальная модификация, симулирующая разрушение реальности внутри игрового движка. Визуальные аномалии, пространственные петли и кастомные сбои интерфейса, создающие неповторимую хоррор-атмосферу.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
             </div>
             <div class="project-image">
                 <img src="glitch_loop.jpg" alt="The Glitch Loop" onerror="this.style.display='none';">
@@ -954,7 +979,7 @@
                 <div class="badge-status">Lost Media Стим аддон</div>
                 <h3>Steam Addon Puppeteer_Legacy</h3>
                 <p>Я нашел и восстановил «Puppeteer_Legacy» — потерянный аддон 2015 года, который позволяет перехватывать управление игроком на уровне движка.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3746548767" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3746548767" class="btn-action" target="_blank" onclick="playSocialSound()"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
             </div>
             <div class="project-image">
                 <img src="puppeteer.jpg" alt="Puppeteer" onerror="this.style.display='none';">
@@ -966,7 +991,7 @@
                 <div class="badge-status">Маркетплейс</div>
                 <h3>Per4ik shop</h3>
                 <p>Наш official магазин цифровых товаров. Низкие цены на криптовалюты, смена регионов (Steam, Epic, PS, iCloud) и качественные ДНС прокси-сервера.</p>
-                <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank"><i class="fa-solid fa-cart-shopping"></i> Перейти в шоп</a>
+                <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank" onclick="playSocialSound()"><i class="fa-solid fa-cart-shopping"></i> Перейти в шоп</a>
             </div>
             <div class="project-image">
                 <img src="shop.jpg" alt="Shop" onerror="this.style.display='none';">
@@ -1029,13 +1054,98 @@
         <i class="fa-solid fa-arrow-up"></i>
     </div>
 
+    <!-- ОБНОВЛЕННЫЙ ТРЕБУЕМЫЙ ФУТЕР -->
     <footer>
-        <p>&copy; 2026 <a href="#">GreenPer Team</a>. Все права защищены кубами и кодом.</p>
+        <div class="footer-content">
+            <div class="footer-links">
+                Страницы проекта: <span>GreenPer Team</span> — Все права защищены кубами и кодом &copy; 2026
+            </div>
+            <div class="footer-call">
+                Вступайте в наш <a href="https://t.me/GreenPerTeam" class="tg-link" target="_blank" onclick="playSocialSound()">Telegram</a> и <a href="https://discord.gg/YOUR_INVITE_LINK" class="ds-link" target="_blank" onclick="playSocialSound()">Discord</a> канал!
+            </div>
+            <div class="footer-copyright">
+                Powered by Core Engine UI. Stay Optimized.
+            </div>
+        </div>
     </footer>
 
     <script>
-        /* 1. Логика интерактивного терминала */
+        /* ЗВУКОВОЙ ДВИЖОК (Web Audio API) — генерирует звуки без внешних файлов */
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playClickSound() {
+            initAudio();
+            if (!audioCtx) return;
+            
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.08);
+            
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.08);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
+        }
+
+        function playSocialSound() {
+            initAudio();
+            if (!audioCtx) return;
+
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.05);
+            
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.15);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.15);
+        }
+
+        function playSuccessSound() {
+            initAudio();
+            if (!audioCtx) return;
+
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // До
+            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // Ми
+            osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // Соль
+            
+            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        /* Логика интерактивного терминала */
         function runCommand(cmd) {
+            playClickSound();
             const termBody = document.getElementById('termBody');
             let output = '';
 
@@ -1062,7 +1172,7 @@
             termBody.scrollTop = termBody.scrollHeight;
         }
 
-        /* 2. Кастомный курсор (только для десктопов) */
+        /* Кастомный курсор (только для десктопов) */
         const cursor = document.getElementById('custom-cursor');
         if (matchMedia('(pointer: fine)').matches) {
             cursor.style.display = 'block';
@@ -1070,11 +1180,15 @@
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });
-            document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.8)');
-            document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+            document.addEventListener('mousedown', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+            });
+            document.addEventListener('mouseup', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
         }
 
-        /* 3. Кнопка Наверх */
+        /* Кнопка Наверх */
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
@@ -1084,10 +1198,11 @@
             }
         });
         function scrollToTop() {
+            playClickSound();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* 4. Работа с идеями пользователей через LocalStorage */
+        /* Работа с идеями пользователей через LocalStorage */
         function submitIdea(e) {
             e.preventDefault();
             const name = document.getElementById('username').value;
@@ -1099,6 +1214,7 @@
             ideas.push(newIdea);
             localStorage.setItem('gp_ideas', JSON.stringify(ideas));
 
+            playSuccessSound();
             alert('Спасибо! Твоя идея успешно отправлена на сервера GreenPer Team.');
             document.getElementById('ideaForm').reset();
             
@@ -1107,15 +1223,18 @@
             }
         }
 
-        /* 5. Админ-панель */
+        /* Админ-панель */
         function toggleAuthPanel() {
+            playClickSound();
             const authPanel = document.getElementById('authPanel');
             authPanel.style.display = authPanel.style.display === 'block' ? 'none' : 'block';
         }
 
         function loginAdmin() {
+            playClickSound();
             const pass = document.getElementById('adminPass').value;
             if (pass === 'greenper2026') {
+                playSuccessSound();
                 document.getElementById('authPanel').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'block';
                 renderIdeas();
@@ -1125,6 +1244,7 @@
         }
 
         function logoutAdmin() {
+            playClickSound();
             document.getElementById('adminPanel').style.display = 'none';
             document.getElementById('adminPass').value = '';
         }
@@ -1148,6 +1268,7 @@
         }
 
         function deleteIdea(index) {
+            playClickSound();
             let ideas = JSON.parse(localStorage.getItem('gp_ideas')) || [];
             ideas.splice(index, 1);
             localStorage.setItem('gp_ideas', JSON.stringify(ideas));
