@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenPer Team | Официальный сайт</title>
+    <title>GreenPer Team | Официальный сайт (ПК Версия)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768) {
+            window.location.href = "mobile.html";
+        }
+    </script>
+
     <style>
-        /* Общие стили и обнуление */
         * {
             margin: 0;
             padding: 0;
@@ -34,7 +40,6 @@
             position: relative;
         }
 
-        /* Задний фон-сетка */
         body::before {
             content: '';
             position: fixed;
@@ -50,7 +55,7 @@
             pointer-events: none;
         }
 
-        /* Кастомный курсор */
+        /* Кастомный курсор для ПК */
         #custom-cursor {
             width: 8px;
             height: 8px;
@@ -65,7 +70,6 @@
             display: none;
         }
 
-        /* Шапка сайта */
         header {
             display: flex;
             justify-content: space-between;
@@ -168,20 +172,19 @@
             box-shadow: 0 0 15px #5865F2;
         }
 
-        /* Главный экран */
         .hero {
-            min-height: 80vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 120px 20px 60px;
+            padding: 140px 20px 60px;
             background: radial-gradient(circle at center, rgba(0, 255, 102, 0.08) 0%, transparent 65%);
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 5.5rem;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: -1px;
@@ -199,10 +202,9 @@
             filter: drop-shadow(0 0 15px rgba(0, 255, 102, 0.3));
         }
 
-        /* КИБЕР-ТЕРМИНАЛ */
         .terminal-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             background: rgba(5, 10, 20, 0.85);
             border: 1px solid rgba(0, 255, 102, 0.2);
             border-radius: 12px;
@@ -214,7 +216,7 @@
 
         .terminal-header {
             background: rgba(17, 24, 39, 0.8);
-            padding: 10px 15px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -238,32 +240,31 @@
         }
 
         .terminal-body {
-            padding: 20px;
+            padding: 22px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #22c55e;
-            min-height: 150px;
+            min-height: 160px;
             max-height: 250px;
             overflow-y: auto;
         }
 
         .terminal-input-line {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
             margin-top: 15px;
-            flex-wrap: wrap;
         }
 
         .term-btn {
             background: rgba(0, 255, 102, 0.05);
             border: 1px solid rgba(0, 255, 102, 0.2);
             color: var(--accent-color);
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 6px;
             cursor: pointer;
             font-family: monospace;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
         }
 
@@ -273,26 +274,22 @@
             box-shadow: 0 0 10px var(--accent-color);
         }
 
-        /* СЕКЦИЯ СТАТИСТИКИ */
         .stats-section {
             display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding: 40px 10%;
+            justify-content: space-around;
+            padding: 50px 15%;
             background: rgba(17, 24, 39, 0.4);
             border-top: 1px solid rgba(255, 255, 255, 0.02);
             border-bottom: 1px solid rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(5px);
-            flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
-            min-width: 180px;
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--accent-color);
             text-shadow: 0 0 10px var(--accent-glow);
@@ -300,24 +297,23 @@
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-top: 5px;
         }
 
-        /* Секция Команды */
-        .team-section {
+        .team-section, .projects-section, .roadmap-section, .ideas-section {
             padding: 100px 10%;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
+            font-size: 3rem;
+            margin-bottom: 70px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-weight: 800;
         }
 
@@ -328,8 +324,8 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -383,7 +379,6 @@
             font-size: 2rem;
             margin-bottom: 8px;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
 
         .role {
@@ -400,10 +395,8 @@
             color: var(--text-muted);
             margin-bottom: 30px;
             font-size: 0.95rem;
-            font-weight: 400;
         }
 
-        /* Кнопки соцсетей */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -433,16 +426,7 @@
             box-shadow: 0 5px 15px rgba(0, 255, 102, 0.3);
         }
 
-        .btn-social.discord-hover:hover {
-            background: #5865F2;
-            border-color: #5865F2;
-            color: #ffffff;
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
-        }
-
-        /* Секция Проектов */
         .projects-section {
-            padding: 100px 10%;
             background: linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.3) 100%);
         }
 
@@ -463,11 +447,11 @@
         .project-wide:hover {
             border-color: rgba(0, 255, 102, 0.3);
             transform: translateY(-4px);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 102, 0.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
         }
 
         .project-info {
-            padding: 45px;
+            padding: 50px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -482,7 +466,6 @@
             justify-content: center;
             border-left: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
-            position: relative;
         }
 
         .project-image img {
@@ -511,12 +494,6 @@
             align-self: flex-start;
         }
 
-        .project-wide.type-lostmedia .badge-status {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
         .project-wide.type-shop .badge-status {
             background: rgba(0, 255, 102, 0.1);
             color: var(--accent-color);
@@ -529,19 +506,15 @@
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
 
-        .project-wide .btn-action {
-            align-self: flex-start;
-        }
-
         .project-info h3 {
-            font-size: 2.1rem;
+            font-size: 2.2rem;
             font-weight: 800;
             margin-bottom: 15px;
         }
 
         .project-info p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .btn-action {
@@ -558,6 +531,7 @@
             text-transform: uppercase;
             font-size: 0.85rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            align-self: flex-start;
         }
 
         .btn-action:hover {
@@ -565,29 +539,23 @@
             transform: translateY(-2px);
         }
 
-        /* ТАЙМЛАЙН / ROADMAP */
-        .roadmap-section {
-            padding: 80px 10%;
-            background: rgba(17, 24, 39, 0.2);
-        }
-
         .roadmap-container {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
-            padding-left: 30px;
+            padding-left: 40px;
             border-left: 2px solid rgba(0, 255, 102, 0.2);
         }
 
         .roadmap-item {
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .roadmap-item::before {
             content: '';
             position: absolute;
-            left: -37px;
+            left: -47px;
             top: 5px;
             width: 12px;
             height: 12px;
@@ -608,25 +576,23 @@
             margin-bottom: 5px;
         }
 
-        /* СЕКЦИЯ ПРЕДЛОЖЕНИЙ И ИДЕЙ */
         .ideas-section {
-            padding: 100px 10%;
             background: radial-gradient(circle at bottom, rgba(0, 255, 102, 0.05) 0%, transparent 60%);
         }
 
         .ideas-container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
+            padding: 45px;
             border-radius: 20px;
             backdrop-filter: blur(12px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             flex-direction: column;
             text-align: left;
@@ -637,14 +603,14 @@
             color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 700;
         }
 
         .form-group input, .form-group textarea {
             background: rgba(3, 7, 18, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-radius: 8px;
             color: var(--text-main);
             font-size: 1rem;
@@ -662,9 +628,9 @@
             background: var(--accent-color);
             color: #030712;
             border: none;
-            padding: 14px;
+            padding: 16px;
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -674,10 +640,8 @@
 
         .ideas-container button:hover {
             box-shadow: 0 0 20px var(--accent-color);
-            transform: translateY(-1px);
         }
 
-        /* КИБЕР-ФОРМА АВТОРИЗАЦИИ АДМИНА */
         .auth-panel {
             max-width: 400px;
             margin: 40px auto 0;
@@ -686,10 +650,8 @@
             border-radius: 16px;
             padding: 25px;
             display: none;
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.05);
         }
 
-        /* АДМИН-ПАНЕЛЬ СМОТРЕТЬ ИДЕИ */
         .admin-panel {
             max-width: 800px;
             margin: 40px auto 0;
@@ -698,17 +660,14 @@
             border-radius: 16px;
             padding: 30px;
             display: none;
-            box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
         }
 
         .admin-panel h3 {
             color: #ef4444;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
 
         .idea-box {
@@ -721,21 +680,6 @@
             position: relative;
         }
 
-        .idea-box strong {
-            color: var(--accent-color);
-        }
-
-        .idea-box .date {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-left: 10px;
-        }
-
-        .idea-box p {
-            margin-top: 8px;
-            font-size: 0.95rem;
-        }
-
         .delete-idea-btn {
             position: absolute;
             right: 15px;
@@ -744,10 +688,8 @@
             border: none;
             color: #ef4444;
             cursor: pointer;
-            font-size: 1rem;
         }
 
-        /* Кнопка "Наверх" */
         .scroll-top-btn {
             position: fixed;
             bottom: 30px;
@@ -755,8 +697,8 @@
             background: var(--card-bg);
             border: 1px solid rgba(0, 255, 102, 0.3);
             color: var(--accent-color);
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -785,11 +727,6 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s ease;
-        }
-
-        footer a:hover {
-            color: #ffffff;
         }
     </style>
 </head>
@@ -814,8 +751,8 @@
 
     <section class="hero">
         <h1>GreenPer <span>Team</span></h1>
-        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 10px;">
-            Разработка софта, утилит и игровых дополнений. Официальный сайт команды.
+        <p style="color: var(--text-muted); font-size: 1.3rem; max-width: 600px; margin-top: 10px;">
+            Разработка софта, утилит и игровых дополнений. Офис-десктоп версия сайта.
         </p>
 
         <div class="terminal-container">
@@ -823,11 +760,11 @@
                 <div class="terminal-dot td-1"></div>
                 <div class="terminal-dot td-2"></div>
                 <div class="terminal-dot td-3"></div>
-                <div class="terminal-title">greenper_core.sh</div>
+                <div class="terminal-title">greenper_desktop.sh</div>
             </div>
             <div class="terminal-body" id="termBody">
-                <div>> Инициализация ядра GreenPer... Готово.</div>
-                <div>> Нажимай на кнопки ниже, чтобы запустить системные логи.</div>
+                <div>> Инициализация ПК-ядра GreenPer... Успешно.</div>
+                <div>> Ожидание ввода команд от пользователя...</div>
             </div>
             <div style="padding: 0 20px 20px;">
                 <div class="terminal-input-line">
@@ -853,10 +790,6 @@
             <div class="stat-number">99.9%</div>
             <div class="stat-label">Стабильность кода</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-number">2026</div>
-            <div class="stat-label">В деле круглый год</div>
-        </div>
     </section>
 
     <section class="team-section" id="team">
@@ -869,7 +802,7 @@
                 </div>
                 <h3>Per4ik</h3>
                 <div class="role">Идеи / Описание</div>
-                <p>Отвечает за генерацию идей, концепты, составление подробных описаний и логику работы наших будущих и текущих проектов.</p>
+                <p>Отвечает за генерацию идей, концепты, составление подробных описаний и логику работы проектов.</p>
                 <div class="btn-group">
                     <a href="https://t.me/vobmy" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/per4ik148" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
@@ -883,7 +816,7 @@
                 </div>
                 <h3>Quach</h3>
                 <div class="role">Разработчик кода</div>
-                <p>Занимается технической реализацией, написанием чистого кода, архитектурой приложений и оптимизацией всех утилит команды.</p>
+                <p>Занимается технической реализацией, написанием чистого кода, архитектурой приложений.</p>
                 <div class="btn-group">
                     <a href="https://t.me/Quac23h" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/kirillzarkov10-svg" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
@@ -897,7 +830,7 @@
                 </div>
                 <h3>Skelet</h3>
                 <div class="role">Идеи / Концепты</div>
-                <p>Генерирует уникальные концепты, продумывает фичи, логику работы софта и развивает креативные направления проектов.</p>
+                <p>Генерирует уникальные концепты, продумывает фичи и развивает креативные направления.</p>
                 <div class="btn-group">
                     <a href="https://t.me/Skeletosha16" class="btn-social" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://github.com/" class="btn-social" target="_blank"><i class="fa-brands fa-github"></i></a>
@@ -912,24 +845,12 @@
         <div class="project-wide type-gmod">
             <div class="project-info">
                 <div class="badge-status">Garry's Mod аддон</div>
-                <h3>The Glitch Loop: Reality Collapse</h3>
-                <p>The Glitch Loop — это хоррор-мод, в котором мир вокруг постепенно ломается. Все начинается с простых визуальных багов, но в итоге игра превращается в полный хаос.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Мастерскую</a>
+                <h3>GMod Admin/Server Utility</h3>
+                <p>Новейшее продвинутое расширение для Garry's Mod, разработанное GreenPer Team. Инструмент со стабильной архитектурой для оптимизации внутренних процессов.</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> В Мастерскую Стим</a>
             </div>
             <div class="project-image">
-                <div style="color: var(--accent-color); font-size: 3rem;"><i class="fa-brands fa-steam"></i></div>
-            </div>
-        </div>
-
-        <div class="project-wide type-gmod">
-            <div class="project-info">
-                <div class="badge-status">Garry's Mod аддон</div>
-                <h3>Custom GMod Addon</h3>
-                <p>Новое функциональное дополнение для Garry's Mod, разработанное нашей командой. Оптимизированный Lua-скрипт, улучшающий игровой процесс и добавляющий уникальные механики на сервер.</p>
-                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=ССЫЛКА_НА_ТВОЙ_НОВЫЙ_АДДОН" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Ссылка на Стим</a>
-            </div>
-            <div class="project-image">
-                <img src="gmod_addon.jpg" alt="GMod Addon" onerror="this.style.display='none';">
+                <div style="color: var(--accent-color); font-size: 4rem;"><i class="fa-brands fa-steam"></i></div>
             </div>
         </div>
 
@@ -949,7 +870,7 @@
             <div class="project-info">
                 <div class="badge-status">Маркетплейс</div>
                 <h3>Per4ik shop</h3>
-                <p>Наш official магазин цифровых товаров. Низкие цены на криптовалюты, смена регионов (Steam, Epic, PS, iCloud) и качественные ДНС прокси-сервера.</p>
+                <p>Наш official магазин цифровых товаров. Низкие цены на криптовалюты, смену регионов и качественные ДНС прокси-сервера.</p>
                 <a href="https://per4ik148.github.io/Per4ik-Shop/" class="btn-action" target="_blank"><i class="fa-solid fa-cart-shopping"></i> Перейти в шоп</a>
             </div>
             <div class="project-image">
@@ -962,21 +883,15 @@
         <h2 class="section-title">Линия <span>Развития</span></h2>
         <div class="roadmap-container">
             <div class="roadmap-item active">
-                <div class="roadmap-date">ЕТА: В ПРОЦЕССЕ</div>
+                <div class="roadmap-date">ETA: В ПРОЦЕССЕ</div>
                 <h4>Релиз лаунчера приложений</h4>
                 <p>Проектирование и оптимизация централизованной оболочки для быстрого запуска внутренних утилит команды.</p>
-            </div>
-            <div class="roadmap-item">
-                <div class="roadmap-date">ETA: Q3 2026</div>
-                <h4>Обновление прокси-серверов</h4>
-                <p>Добавление новых конфигураций под актуальные обходы блокировок и ускорение пинга.</p>
             </div>
         </div>
     </section>
 
     <section class="ideas-section" id="ideas">
         <h2 class="section-title">Предложить <span>Идею</span></h2>
-        
         <div class="ideas-container">
             <form id="ideaForm" onsubmit="submitIdea(event)">
                 <div class="form-group">
@@ -991,7 +906,7 @@
             </form>
         </div>
 
-        <p style="margin-top: 30px; font-size: 0.85rem; color: var(--accent-color); cursor: pointer; text-decoration: underline;" onclick="toggleAuthPanel()">[ Управление панелью ]</p>
+        <p style="margin-top: 30px; font-size: 0.85rem; color: var(--accent-color); cursor: pointer; text-decoration: underline; text-align: center;" onclick="toggleAuthPanel()">[ Управление панелью ]</p>
 
         <div class="auth-panel" id="authPanel">
             <div class="form-group">
@@ -1003,8 +918,7 @@
 
         <div class="admin-panel" id="adminPanel">
             <h3>Панель управления идеями <button onclick="logoutAdmin()" style="background:none; border:none; color:#ef4444; cursor:pointer;">[Выход]</button></h3>
-            <div id="ideasContainer">
-                </div>
+            <div id="ideasContainer"></div>
         </div>
     </section>
 
@@ -1012,54 +926,42 @@
         <i class="fa-solid fa-arrow-up"></i>
     </div>
 
-<footer>
-    <div style="margin-bottom: 20px;">
-        <audio id="bg-music" loop style="width: 250px;">
-            <source src="music.mp3" type="audio/mpeg">
-            Ваш браузер не поддерживает аудио.
-        </audio>
-        <br>
-        <button onclick="document.getElementById('bg-music').play()" class="term-btn">Play Music</button>
-    </div>
-    <div style="margin-bottom: 20px;">
-        <a href="https://discord.gg/RGuZ34TE8G" target="_blank" style="margin: 0 10px; font-size: 1.5rem; color: #5865F2;"><i class="fa-brands fa-discord"></i></a>
-        <a href="https://t.me/GreenPerTeam" target="_blank" style="margin: 0 10px; font-size: 1.5rem; color: var(--accent-color);"><i class="fa-brands fa-telegram"></i></a>
-    </div>
-    <p>&copy; 2026 <a href="#">GreenPer Team</a>. Все права защищены защитой кода.</p>
-</footer>
+    <footer>
+        <div style="margin-bottom: 20px;">
+            <audio id="bg-music" loop style="width: 250px;">
+                <source src="music.mp3" type="audio/mpeg">
+            </audio>
+            <br>
+            <button onclick="document.getElementById('bg-music').play()" class="term-btn"><i class="fa-solid fa-play"></i> Включить трек</button>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <a href="https://discord.gg/RGuZ34TE8G" target="_blank" style="margin: 0 10px; font-size: 1.5rem; color: #5865F2;"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://t.me/GreenPerTeam" target="_blank" style="margin: 0 10px; font-size: 1.5rem; color: var(--accent-color);"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+        <p>&copy; 2026 <a href="#">GreenPer Team</a>. Раздельная ПК Версия.</p>
+    </footer>
 
     <script>
-        /* ЛОГИКА КИБЕР ТЕРМИНАЛA */
         function runCommand(cmd) {
             const body = document.getElementById('termBody');
             let text = '';
-            
-            if (cmd === 'help') {
-                text = '<div>> Доступные модули:<br>./status - проверить аптайм<br>./secret - скрытые данные<br>clear - очистить лог</div>';
-            } else if (cmd === 'status') {
-                text = '<div>> Статус систем: 100% стабильности.<br>> Ядро: GreenPer_v2.0<br>> Ошибок компиляции: 0.</div>';
-            } else if (cmd === 'secret') {
-                text = '<div>> [CLASSIFIED] Разработка GreenPer Launcher идет по графику. Ожидайте билд.</div>';
-            } else if (cmd === 'clear') {
-                body.innerHTML = '<div>> Консоль очищена.</div>';
-                return;
-            }
+            if (cmd === 'help') text = '<div>> ./status - аптайм ядра<br>./secret - лог лаунчера<br>clear - очистить лог</div>';
+            else if (cmd === 'status') text = '<div>> Статус систем: ПК-ядро стабильно.<br>> Ошибок: 0.</div>';
+            else if (cmd === 'secret') text = '<div>> Разработка лаунчера ведется в штатном режиме.</div>';
+            else if (cmd === 'clear') { body.innerHTML = '<div>> Очищено.</div>'; return; }
             body.innerHTML += text;
             body.scrollTop = body.scrollHeight;
         }
 
-        /* ЛОГИКА ИДЕЙ (LOCALSTORAGE ДЛЯ ДЕМОНСТРАЦИИ) */
         function submitIdea(e) {
             e.preventDefault();
             const name = document.getElementById('username').value;
             const text = document.getElementById('ideatext').value;
             const date = new Date().toLocaleDateString('ru-RU');
-
             let ideas = JSON.parse(localStorage.getItem('team_ideas')) || [];
             ideas.push({name, text, date});
             localStorage.setItem('team_ideas', JSON.stringify(ideas));
-
-            alert('Идея успешно отправлена разработчикам GreenPer!');
+            alert('Идея сохранена!');
             document.getElementById('ideaForm').reset();
             renderIdeas();
         }
@@ -1070,34 +972,21 @@
         }
 
         function loginAdmin() {
-            const pass = document.getElementById('adminPass').value;
-            // Установи свой секретный пароль вместо 'admin'
-            if (pass === 'admin') { 
+            if (document.getElementById('adminPass').value === 'admin') { 
                 document.getElementById('authPanel').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'block';
                 renderIdeas();
-            } else {
-                alert('Доступ запрещен. Неверный пароль.');
-            }
+            } else alert('Ошибка.');
         }
 
-        function logoutAdmin() {
-            document.getElementById('adminPanel').style.display = 'none';
-        }
+        function logoutAdmin() { document.getElementById('adminPanel').style.display = 'none'; }
 
         function renderIdeas() {
             const container = document.getElementById('ideasContainer');
             let ideas = JSON.parse(localStorage.getItem('team_ideas')) || [];
-            container.innerHTML = ideas.length === 0 ? '<p>Новых предложений пока нет.</p>' : '';
-            
+            container.innerHTML = ideas.length === 0 ? '<p>Идей нет.</p>' : '';
             ideas.forEach((idea, index) => {
-                container.innerHTML += `
-                    <div class="idea-box">
-                        <button class="delete-idea-btn" onclick="deleteIdea(${index})"><i class="fa-solid fa-trash"></i></button>
-                        <strong>${idea.name}</strong> <span class="date">${idea.date}</span>
-                        <p>${idea.text}</p>
-                    </div>
-                `;
+                container.innerHTML += `<div class="idea-box"><button class="delete-idea-btn" onclick="deleteIdea(${index})">Удалить</button><strong>${idea.name}</strong>: ${idea.text}</div>`;
             });
         }
 
@@ -1108,15 +997,8 @@
             renderIdeas();
         }
 
-        /* КНОПКА НАВЕРХ И КУРСОР */
         const btn = document.getElementById('scrollTopBtn');
-        window.onscroll = function() {
-            if (window.scrollY > 400) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        };
+        window.onscroll = function() { btn.classList.toggle('visible', window.scrollY > 400); };
 
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
