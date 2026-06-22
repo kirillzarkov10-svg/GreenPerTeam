@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenPer Team | Официальный сайт (Мобильная Версия)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.innerWidth > 768) {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.85);
+            --accent-color: #00ff66;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(3, 7, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .menu-toggle {
+            font-size: 22px;
+            color: var(--accent-color);
+            background: none;
+            border: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 260px;
+            height: 100vh;
+            background: rgba(3, 7, 18, 0.98);
+            border-left: 1px solid rgba(0, 255, 102, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding: 80px 25px;
+            gap: 20px;
+            transition: right 0.3s ease-in-out;
+            z-index: 999;
+        }
+
+        nav.active {
+            right: 0;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .nav-social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .nav-social-btn.discord-btn {
+            border-color: #5865F2;
+            color: #5865F2;
+        }
+
+        .hero {
+            padding: 100px 20px 40px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 255, 102, 0.05) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .terminal-container {
+            background: #050a14;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #111827;
+            padding: 10px;
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: var(--text-muted);
+        }
+
+        .terminal-body {
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #22c55e;
+            height: 140px;
+            overflow-y: auto;
+        }
+
+        .terminal-input-line {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 10px;
+            background: #020617;
+        }
+
+        .term-btn {
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            color: var(--accent-color);
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 30px 20px;
+            background: rgba(17, 24, 39, 0.5);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 50px 0 30px;
+            text-transform: uppercase;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .avatar-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            margin: 0 auto 15px;
+            overflow: hidden;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .role {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-wide {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            margin: 0 20px 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-info {
+            padding: 25px 20px;
+        }
+
+        .badge-status {
+            display: inline-block;
+            background: rgba(0, 255, 102, 0.1);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent-color);
+            color: #030712;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        .ideas-container {
+            background: var(--card-bg);
+            margin: 0 20px;
+            padding: 25px 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .form-group input, .form-group textarea {
+            background: #030712;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        .ideas-container button {
+            width: 100%;
+            background: var(--accent-color);
+            color: #030712;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            background: #020617;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">GreenPer Mobile</div>
+        <button class="menu-toggle" onclick="document.getElementById('mobileNav').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <nav id="mobileNav">
+        <a href="#team" onclick="document.getElementById('mobileNav').classList.remove('active')">Команда</a>
+        <a href="#projects" onclick="document.getElementById('mobileNav').classList.remove('active')">Проекты</a>
+        <a href="#ideas" onclick="document.getElementById('mobileNav').classList.remove('active')">Идеи</a>
+        <a href="https://discord.gg/RGuZ34TE8G" class="nav-social-btn discord-btn" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
+        <a href="https://t.me/GreenPerTeam" class="nav-social-btn" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram</a>
+    </nav>
+
+    <section class="hero">
+        <h1>GreenPer <span>Mobile</span></h1>
+        <p style="color: var(--text-muted); font-size: 1rem; margin-top: 8px;">
+            Мобильная версия официального портала команды GreenPer Team.
+        </p>
+
+        <div class="terminal-container">
+            <div class="terminal-header">greenper_touch.sh</div>
+            <div class="terminal-body" id="termBody">
+                <div>> Мобильное ядро запущено.</div>
+                <div>> Нажми кнопку для лога:</div>
+            </div>
+            <div class="terminal-input-line">
+                <button class="term-btn" onclick="runCommand('status')">./status</button>
+                <button class="term-btn" onclick="runCommand('clear')">clear</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stat-item">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Разработчика</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10k+</div>
+            <div class="stat-label">Загрузок</div>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2 class="section-title">Наша <span>Команда</span></h2>
+        <div class="grid">
+            <div class="card">
+                <div class="avatar-container"><img src="per4ik.png" alt="P" onerror="this.style.display='none'"></div>
+                <h3>Per4ik</h3>
+                <div class="role">Идеи / Концепты</div>
+            </div>
+            <div class="card">
+                <div class="avatar-container"><img src="quach.png" alt="Q" onerror="this.style.display='none'"></div>
+                <h3>Quach</h3>
+                <div class="role">Кодер / Разработчик</div>
+            </div>
+            <div class="card">
+                <div class="avatar-container"><img src="new_member.png" alt="S" onerror="this.style.display='none'"></div>
+                <h3>Skelet</h3>
+                <div class="role">Идейный вдохновитель</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Наши <span>Проекты</span></h2>
+
+        <div class="project-wide">
+            <div class="project-info">
+                <div class="badge-status">Garry's Mod</div>
+                <h3>GMod Admin/Server Utility</h3>
+                <p>Новейшее продвинутое расширение для Garry's Mod со стабильной архитектурой.</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747185444" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> Открыть в Steam</a>
+            </div>
+        </div>
+
+        <div class="project-wide">
+            <div class="project-info">
+                <div class="badge-status">Lost Media</div>
+                <h3>Steam Addon Puppeteer_Legacy</h3>
+                <p>Восстановленный утерянный аддон 2015 года для перехвата управления игроками.</p>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3746548767" class="btn-action" target="_blank"><i class="fa-brands fa-steam"></i> В Мастерскую</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="ideas">
+        <h2 class="section-title">Ваша <span>Идея</span></h2>
+        <div class="ideas-container">
+            <form onsubmit="submitIdea(event)">
+                <div class="form-group">
+                    <label>Ваш Никнейм / ТГ</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Суть предложения</label>
+                    <textarea id="ideatext" rows="4" required></textarea>
+                </div>
+                <button type="submit">Отправить идею</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div style="margin-bottom: 15px;">
+            <audio id="bg-music" loop>
+                <source src="music.mp3" type="audio/mpeg">
+            </audio>
+            <button onclick="document.getElementById('bg-music').play()" class="term-btn"><i class="fa-solid fa-play"></i> Музыка</button>
+        </div>
+        <p>&copy; 2026 GreenPer Team. Мобильная версия сайта.</p>
+    </footer>
+
+    <script>
+        function runCommand(cmd) {
+            const body = document.getElementById('termBody');
+            if (cmd === 'status') body.innerHTML += '<div>> Мобильная система: ОК.<br>> Ошибок: 0.</div>';
+            if (cmd === 'clear') body.innerHTML = '<div>> Очищено.</div>';
+            body.scrollTop = body.scrollHeight;
+        }
+
+        function submitIdea(e) {
+            e.preventDefault();
+            const name = document.getElementById('username').value;
+            const text = document.getElementById('ideatext').value;
+            let ideas = JSON.parse(localStorage.getItem('team_ideas')) || [];
+            ideas.push({name, text, date: new Date().toLocaleDateString('ru-RU')});
+            localStorage.setItem('team_ideas', JSON.stringify(ideas));
+            alert('Идея успешно добавлена!');
+        }
+    </script>
+</body>
+</html>
